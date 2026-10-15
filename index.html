@@ -363,6 +363,7 @@ const SFX={
   wrong:()=>{tone(196,.18,{type:'sawtooth',vol:.07});tone(147,.28,{type:'sawtooth',vol:.07,delay:.16})},
   card:()=>[784,988,1175,1568].forEach((f,i)=>tone(f,.12,{type:'triangle',vol:.1,delay:i*.06})),
   open:()=>tone(110,.6,{type:'triangle',slide:50,vol:.25}),
+  heal:()=>[659,784,988,1319].forEach((f,i)=>tone(f,.16,{type:'triangle',vol:.12,delay:i*.07})),
   win:()=>[523,659,784,659,784,1046].forEach((f,i)=>tone(f,.2,{vol:.08,delay:i*.13})),
 };
 const MEL=[76,79,81,79,76,74,72,74,76,79,81,84,81,79,76,0,74,76,79,76,74,72,69,72,74,76,72,69,67,69,72,0];
@@ -805,7 +806,7 @@ function bump(s){
     g.pending={key:s.key,t:.35};
   }else if(s.kind==='brick'){
     SFX.bump();
-    if(s.pearl){s.pearl=false;g.got++;SAVE.pearls++;SFX.pearl();g.parts.push({kind:'pearl',x:s.x+20,y:s.y-10,vy:-380,life:.55,max:.55})}
+    if(s.pearl){s.pearl=false;gain(1);SFX.pearl();g.parts.push({kind:'pearl',x:s.x+20,y:s.y-10,vy:-380,life:.55,max:.55})}
   }else if(s.kind==='answer'){
     const q=s.gate;
     if(q.solved||s.state){SFX.bump();return}
@@ -816,7 +817,7 @@ function bump(s){
       burst(s.x+20,s.y,'#ffd36a',26,320);
       float(s.x+20,s.y-20,X('著！ tio̍h!','Tio̍h!'),'#ffe27a',30,FD);
       toast(X(`答對了！「${q.word.h}」是 ${plain(R(q.word.t))}`,`Ìn tio̍h--ah! ${q.word.e} ${plain(q.word.t)}`));
-      g.got+=3;SAVE.pearls+=3;persist();
+      gain(3);persist();
     }else{
       s.state='wrong';q.wrong++;g.wrong++;SFX.wrong();
       burst(s.x+20,s.y,'#9a8fb0',12,180);
@@ -829,6 +830,14 @@ function bump(s){
   }else SFX.bump();
 }
 
+const PEARLS_PER_HEART=20;
+function gain(n){
+  const g=G;g.got+=n;SAVE.pearls+=n;g.heal=Math.min(PEARLS_PER_HEART,(g.heal||0)+n);
+  if(g.heal>=PEARLS_PER_HEART&&g.hearts<3){
+    g.heal=0;g.hearts++;SFX.heal();
+    float(g.p.x+13,g.p.y-22,X('補命！ +♥','Póo miā! +♥'),'#ff8a9a',26,FD);burst(g.p.x+13,g.p.y+10,'#ff8a9a',16,200);
+  }
+}
 function hurt(){
   const g=G,p=g.p;if(p.inv>0||g.auto)return;
   g.hearts--;p.inv=1.6;p.vy=-420;p.vx=-p.face*220;SFX.hurt();burst(p.x+13,p.y+17,'#ff7a8a',12);
@@ -884,7 +893,7 @@ function endDemo(){
   G=buildLevel(li,true);mode='menu';
   showOv(`<div class="stack" style="text-align:center;align-items:center">
     <h2 style="font-size:40px;color:var(--gold)">${X('換你矣！','Uānn lí--ah!')}</h2>
-    <p>${X('撞字磚學字母，看題目撞正確的字母磚，行到天燈就過關。','Lòng jī-tsng o̍h jī-bó, khuànn tê-bo̍k lòng tio̍h-ê jī-bó tsng, kiânn kàu thian-ting tō kuè-kuan.')}</p>
+    <p>${X('撞字磚學字母，看題目撞正確的字母磚，行到天燈就過關。每收集 20 粒珍珠，會補一粒命。','Lòng jī-tsng o̍h jī-bó, khuànn tê-bo̍k lòng tio̍h-ê jī-bó tsng, kiânn kàu thian-ting tō kuè-kuan. Tsin-tsu tsa̍p 20 lia̍p, ē póo tsi̍t lia̍p miā.')}</p>
     <div class="row" style="justify-content:center"><button class="btn gold" data-default id="a">${X('開始冒險','Khai-sí mōo-hiám')} ▶</button><button class="btn ghost" id="d">${X('閣看一擺','Koh khuànn tsi̍t-pái')}</button></div></div>`,true);
   $('#a').onclick=showMap;$('#d').onclick=startDemo;
 }
@@ -917,7 +926,7 @@ function update(dt){
   if(p.y>H+60){fell();if(mode!=='play')return}
   for(const c of g.checks)if(p.x>c.x&&c.x>g.check)g.check=c.x;
   // pearls
-  for(const q of g.pearls){if(q.taken)continue;if(Math.abs(p.x+13-q.x)<22&&Math.abs(p.y+17-q.y)<36){q.taken=true;g.got++;SAVE.pearls++;SFX.pearl();g.parts.push({kind:'spark',x:q.x,y:q.y,life:.3,max:.3})}}
+  for(const q of g.pearls){if(q.taken)continue;if(Math.abs(p.x+13-q.x)<22&&Math.abs(p.y+17-q.y)<36){q.taken=true;gain(1);SFX.pearl();g.parts.push({kind:'spark',x:q.x,y:q.y,life:.3,max:.3})}}
   // enemies
   for(const e of g.enemies){
     if(!e.alive){e.dead+=dt;continue}
@@ -1050,7 +1059,8 @@ function drawHeart(x,y,s,full){
 function drawHUD(g){
   ctx.fillStyle='rgba(12,6,24,.6)';rr(ctx,10,10,W-20,46,12);ctx.fill();
   for(let i=0;i<3;i++)drawHeart(34+i*30,38,1.6,i<g.hearts);
-  drawPearl(ctx,134,33);txt('× '+g.got,148,34,`900 18px ${FB}`,'#fff6e0','left','middle');
+  drawPearl(ctx,134,30);txt('× '+g.got,148,31,`900 18px ${FB}`,'#fff6e0','left','middle');
+  {const f=(g.heal||0)/PEARLS_PER_HEART,full=f>=1;ctx.fillStyle='rgba(255,255,255,.15)';rr(ctx,126,44,80,5,2.5);ctx.fill();ctx.fillStyle=full?'#ff8a9a':'#f5b630';if(f>0){rr(ctx,126,44,Math.max(5,80*f),5,2.5);ctx.fill()}}
   const hd=X(`第${NUM[g.def.n]}關  ${g.def.name}`,`Tē-${NUM_LO[g.def.n]} kuan  ·`);txt(hd,226,34,`700 22px ${FD}`,'#ffd36a','left','middle');
   ctx.font=`700 22px ${FD}`;const nw=ctx.measureText(hd).width;
   txt(R(g.def.tl),236+nw,35,`700 15px ${FR}`,'#c9bde0','left','middle');
