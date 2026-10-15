@@ -140,6 +140,7 @@ kbd{font:700 12px var(--f-body);border:1px solid var(--edge);border-bottom-width
 body.lo{--f-display:var(--f-roman);--f-body:var(--f-roman)}
 body.lo .logo{font-size:clamp(32px,6vw,56px)}
 body.lo .lv h3{font-size:24px}
+.seg.big{flex-wrap:wrap}
 .seg.big button{font-size:18px;padding:10px 20px}
 .seg.big button .roman{font-size:13px}
 /* result */
@@ -236,41 +237,95 @@ defL('ue','複合母音','ㄨㄝ','從 {u} 滑到 {e}，像ㄨㄝ。',[['火','h
 defL('ui','複合母音','ㄨㄧ','從 {u} 滑到 {i}，尾音是清楚的 {i}。',[['水','ts[uí]','水','💧'],['開','kh[ui]','開門','🚪']]);
 defL('iau','複合母音','ㄧㄠ','{i}＋{a}＋{u} 三个音連做伙，像ㄧㄠ。',[['枵','[iau]','肚子餓','🍽️'],['貓','n[iau]','貓','🐈']]);
 defL('uai','複合母音','ㄨㄞ','{u}＋{a}＋{i} 三个音連做伙，像ㄨㄞ。',[['歪','[uai]','歪','↗️'],['乖','k[uai]','乖','😇']]);
+defL('ann','鼻化韻','ㄚ鼻化','發 {a} 的時陣，氣同時對鼻空出來。{nn} 是鼻化的記號，毋是兩个 n！',[['衫','s[ann]','衫','👕'],['三','s[ann]','三','3️⃣']]);
+defL('inn','鼻化韻','ㄧ鼻化','發 {i} 的時陣，氣同時對鼻空出來。',[['圓','[înn]','圓','⭕'],['甜','t[inn]','甜','🍬']]);
+defL('enn','鼻化韻','ㄝ鼻化','發 {e} 的時陣，氣同時對鼻空出來。',[['嬰','[enn]','嬰仔','👶'],['坑','kh[enn]','坑','🕳️']]);
+defL('iann','鼻化韻','ㄧㄚ鼻化','發 {ia} 的時陣，氣同時對鼻空出來。',[['餅','p[iánn]','餅','🍪'],['驚','k[iann]','驚（怕）','😱']]);
+defL('uann','鼻化韻','ㄨㄚ鼻化','發 {ua} 的時陣，氣同時對鼻空出來。',[['碗','[uánn]','碗','🥣'],['山','s[uann]','山','⛰️']]);
+defL('-p','入聲','ㄅ收尾','嘴唇合起來收尾，毋免放開。聲音短短。',[['十','tsa̍[p]','十','🔟'],['盒','a̍[p]','盒仔','📦']]);
+defL('-t','入聲','ㄉ收尾','舌尖頂牢上齒後壁收尾，毋免放開。聲音短短。',[['日','ji̍[t]','日頭','☀️'],['筆','pi[t]','筆','✏️']]);
+defL('-k','入聲','ㄍ收尾','舌根頂牢收尾，毋免放開。聲音短短。',[['鹿','lo̍[k]','鹿','🦌'],['六','la̍[k]','六','6️⃣']]);
+defL('-h','入聲','喉塞收尾','喉嚨忽然擋牢，聲音短短停落來。',[['鴨','a[h]','鴨仔','🦆'],['肉','ba[h]','肉','🥩']]);
+defL('t1','聲調','55','第一調：高平調，聲音懸懸、平平。無調號。',[['獅','s[a]i','獅','🦁'],['豬','t[i]','豬','🐷']]);
+defL('t2','聲調','51','第二調：高降調，對懸跋落來。調號「ˊ」，像 á。',[['虎','h[óo]','虎','🐯'],['狗','k[á]u','狗','🐕']]);
+defL('t3','聲調','21','第三調：低降調，低低沉落去。調號「ˋ」，像 à。',[['豹','p[à]','豹','🐆'],['菜','tsh[à]i','菜','🥬']]);
+defL('t4','聲調','3ʔ','第四調：短促的中調，尾音 p、t、k、h 收牢。無調號。',[['鱉','p[i]h','鱉','🐢'],['鴨','[a]h','鴨仔','🦆']]);
+defL('t5','聲調','24','第五調：升調，對低升起來，親像咧問問題。調號「ˆ」，像 â。',[['猴','k[â]u','猴','🐒'],['牛','g[û]','牛','🐄']]);
+defL('t7','聲調','33','第七調：中平調，平平、中中。調號「ˉ」，像 ā。第六調佇大部份腔口佮第七調仝款。',[['象','tsh[iū]nn','象','🐘'],['麵','m[ī]','麵','🍜']]);
+defL('t8','聲調','5ʔ','第八調：短促的懸調，尾音 p、t、k、h。調號「ˈ」，像 a̍h。',[['鹿','l[o̍]k','鹿','🦌'],['熱','j[ua̍]h','熱','🔥']]);
+for(const n of [1,2,3,4,5,7,8])LETTERS['t'+n].label=String(n);
 const INITIALS=['p','ph','b','m','t','th','n','l','k','kh','g','ng','h','ts','tsh','s','j'];
 const VOWELS=['a','i','u','e','o','oo'];
 const COMPOUND1=['ai','au','ia','iu','io'],COMPOUND2=['ua','ue','ui','iau','uai'];
 const COMPOUNDS=[...COMPOUND1,...COMPOUND2];
-const ALL=[...INITIALS,...VOWELS,...COMPOUNDS];
+const NASAL=['ann','inn','enn','iann','uann'],CHECKED=['-p','-t','-k','-h'],TONES_A=['t1','t2','t3','t5','t7'],TONES_B=['t4','t8'],TONES=['t1','t2','t3','t4','t5','t7','t8'];
+const ALL=[...INITIALS,...VOWELS,...COMPOUNDS,...NASAL,...CHECKED,...TONES];
+const lab=k=>R(LETTERS[k].label||k);
+const stripTone=t=>t.normalize('NFD').replace(/[\u0300-\u030F]/g,'').normalize('NFC');
+function pickWord(key,rand){const ws=LETTERS[key].words;return rand&&LETTERS[key].type==='子音'?ws[Math.random()<.5?0:1]:ws[1]}
+function pickOpts(key,r){return shuffle([key,...shuffle(groupOf(key).filter(k=>k!==key),r).slice(0,2)],r)}
+const PROMPT={'子音':['這个字的子音是？','Tsit jī ê tsú-im sī?'],'母音':['這个字的母音是？','Tsit jī ê bó-im sī?'],'複合母音':['這个字的母音是？','Tsit jī ê bó-im sī?'],'鼻化韻':['這个字的鼻化韻是？','Tsit jī ê phīnn-huà-ūn sī?'],'入聲':['這个字的尾音是？','Tsit jī ê bué-im sī?'],'聲調':['這个字是第幾調？','Tsit jī sī tē-kuí tiāu?']};
 const isVowel=k=>LETTERS[k].type!=='子音';
-const GROUPS=[['p','ph','b','m'],['t','th','n','l'],['k','kh','g','ng','h'],['ts','tsh','s','j'],VOWELS,COMPOUND1,COMPOUND2];
+const GROUPS=[['p','ph','b','m'],['t','th','n','l'],['k','kh','g','ng','h'],['ts','tsh','s','j'],VOWELS,COMPOUND1,COMPOUND2,NASAL,CHECKED,TONES_A,TONES_B];
 const groupOf=k=>GROUPS.find(g=>g.includes(k));
 const plain=t=>t.replace(/[\[\]]/g,'');
 const blanked=t=>t.replace(/\[.*?\]/,'_');
 const marked=t=>esc(t).replace('[','<mark>').replace(']','</mark>');
 
-const ISLAND=[
-  {name:'夜市',tl:'Iā-tshī',sub:'雙唇音',subLo:'Siang-tûn-im',letters:['p','ph','b','m'],theme:'night',band:'#d93a2b'},
-  {name:'廟口',tl:'Biō-kháu',sub:'舌尖音',subLo:'Tsi̍h-tsiam-im',letters:['t','th','n','l'],theme:'temple',band:'#e9814a'},
-  {name:'九份',tl:'Káu-hūn',sub:'舌根音・喉音',subLo:'Tsi̍h-kin-im・Âu-im',letters:['k','kh','g','ng','h'],theme:'rain',band:'#6f86b3'},
-  {name:'阿里山',tl:'A-lí-san',sub:'齒音',subLo:'Khí-im',letters:['ts','tsh','s','j'],theme:'mountain',band:'#4f9b4a'},
-  {name:'海口',tl:'Hái-kháu',sub:'六个母音',subLo:'La̍k ê bó-im',letters:VOWELS,theme:'sea',band:'#2a9fd6'},
-  {name:'日月潭',tl:'Ji̍t-gua̍t-thâm',sub:'複合母音（一）',subLo:'Ho̍k-ha̍p bó-im (it)',letters:COMPOUND1,theme:'lake',band:'#3f8f9a'},
-  {name:'太魯閣',tl:'Thài-lóo-koh',sub:'複合母音（二）',subLo:'Ho̍k-ha̍p bó-im (jī)',letters:COMPOUND2,theme:'gorge',band:'#8a9bb0'},
-  {name:'環島',tl:'Khuân-tó',sub:'總複習：隨機 8 題',subLo:'Tsóng ho̍k-si̍p: sùi-ki 8 tê',letters:null,theme:'city',band:'#5fd0c9',challenge:true},
+const STAGES=[
+  {sub:'雙唇音',subLo:'Siang-tûn-im',letters:['p','ph','b','m']},
+  {sub:'舌尖音',subLo:'Tsi̍h-tsiam-im',letters:['t','th','n','l']},
+  {sub:'舌根音・喉音',subLo:'Tsi̍h-kin-im・Âu-im',letters:['k','kh','g','ng','h']},
+  {sub:'齒音',subLo:'Khí-im',letters:['ts','tsh','s','j']},
+  {sub:'六个母音',subLo:'La̍k ê bó-im',letters:VOWELS},
+  {sub:'複合母音（一）',subLo:'Ho̍k-ha̍p bó-im (it)',letters:COMPOUND1},
+  {sub:'複合母音（二）',subLo:'Ho̍k-ha̍p bó-im (jī)',letters:COMPOUND2},
+  {sub:'鼻化韻',subLo:'Phīnn-huà-ūn',letters:NASAL},
+  {sub:'入聲（-p -t -k -h）',subLo:'Ji̍p-siann',letters:[...CHECKED,...TONES_B]},
+  {sub:'聲調',subLo:'Siann-tiāu',letters:TONES_A},
+  {sub:'魔王關：總複習',subLo:'Môo-ông kuan: tsóng ho̍k-si̍p',letters:null,challenge:true,boss:true},
 ];
-const TAINAN=[
-  {name:'赤崁樓',tl:'Tshiah-khàm-lâu',theme:'chihkan',band:'#c0503a'},
-  {name:'孔子廟',tl:'Khóng-tsú-biō',theme:'confucius',band:'#b8432e'},
-  {name:'神農街',tl:'Sîn-lông-ke',theme:'shennong',band:'#e0402e'},
-  {name:'安平古堡',tl:'An-pîng Kóo-pó',theme:'anping',band:'#a85a40'},
-  {name:'七股鹽山',tl:'Tshit-kóo Iâm-suann',theme:'salt',band:'#9ad0ea'},
-  {name:'四草綠色隧道',tl:'Sì-tsháu Li̍k-sik Suī-tō',theme:'sicao',band:'#4a8a4a'},
-  {name:'億載金城',tl:'Ik-tsài Kim-siânn',theme:'eternal',band:'#d07a4a'},
-  {name:'府城',tl:'Hú-siânn',theme:'fucheng',band:'#f0a050'},
-];
-const LEVELS=[...ISLAND.map((d,n)=>({...d,world:'island',n})),...TAINAN.map((d,n)=>({...ISLAND[n],...d,world:'tainan',n}))];
-const WORLDS={island:{name:'環島',lo:'Khuân-tó',route:'環島路線',routeLo:'Khuân-tó lōo-suànn'},tainan:{name:'台南',lo:'Tâi-lâm',route:'府城路線',routeLo:'Hú-siânn lōo-suànn'}};
-const NUM=['一','二','三','四','五','六','七','八'];
+const MAPS={
+  island:[
+    {name:'夜市',tl:'Iā-tshī',theme:'night',band:'#d93a2b'},{name:'廟口',tl:'Biō-kháu',theme:'temple',band:'#e9814a'},
+    {name:'九份',tl:'Káu-hūn',theme:'rain',band:'#6f86b3'},{name:'阿里山',tl:'A-lí-san',theme:'mountain',band:'#4f9b4a'},
+    {name:'海口',tl:'Hái-kháu',theme:'sea',band:'#2a9fd6'},{name:'日月潭',tl:'Ji̍t-gua̍t-thâm',theme:'lake',band:'#3f8f9a'},
+    {name:'太魯閣',tl:'Thài-lóo-koh',theme:'gorge',band:'#8a9bb0'},{name:'合歡山',tl:'Ha̍p-huan-suann',theme:'snow',band:'#a8c4e4'},
+    {name:'野柳',tl:'Iá-liú',theme:'yehliu',band:'#d8a868'},{name:'台東',tl:'Tâi-tang',theme:'balloon',band:'#7ab84a'},
+    {name:'環島',tl:'Khuân-tó',theme:'city',band:'#5fd0c9'}],
+  tainan:[
+    {name:'赤崁樓',tl:'Tshiah-khàm-lâu',theme:'chihkan',band:'#c0503a'},{name:'孔子廟',tl:'Khóng-tsú-biō',theme:'confucius',band:'#b8432e'},
+    {name:'神農街',tl:'Sîn-lông-ke',theme:'shennong',band:'#e0402e'},{name:'安平古堡',tl:'An-pîng Kóo-pó',theme:'anping',band:'#a85a40'},
+    {name:'七股鹽山',tl:'Tshit-kóo Iâm-suann',theme:'salt',band:'#9ad0ea'},{name:'四草綠色隧道',tl:'Sì-tsháu Li̍k-sik Suī-tō',theme:'sicao',band:'#4a8a4a'},
+    {name:'億載金城',tl:'Ik-tsài Kim-siânn',theme:'eternal',band:'#d07a4a'},{name:'奇美博物館',tl:'Kî-bí Phok-bu̍t-kuán',theme:'chimei',band:'#c8c0a8'},
+    {name:'烏山頭',tl:'Oo-suann-thâu',theme:'wushantou',band:'#4a9ab8'},{name:'鹽水',tl:'Kiâm-tsuí',theme:'beehive',band:'#e8603a'},
+    {name:'府城',tl:'Hú-siânn',theme:'fucheng',band:'#f0a050'}],
+  taipei:[
+    {name:'台北101',tl:'Tâi-pak It-khòng-it',theme:'taipei101',band:'#4f7f86'},{name:'龍山寺',tl:'Liông-san-sī',theme:'lungshan',band:'#c8432e'},
+    {name:'西門町',tl:'Se-mn̂g-ting',theme:'ximen',band:'#e86aa0'},{name:'迪化街',tl:'Ti̍k-huà-ke',theme:'dihua',band:'#c09060'},
+    {name:'士林夜市',tl:'Sū-lîm Iā-tshī',theme:'shilin',band:'#d93a2b'},{name:'淡水',tl:'Tām-tsuí',theme:'tamsui',band:'#f08a5a'},
+    {name:'北投',tl:'Pak-tâu',theme:'beitou',band:'#7a9a8a'},{name:'陽明山',tl:'Iông-bîng-suann',theme:'yangming',band:'#e88aa8'},
+    {name:'貓空',tl:'Niau-khang',theme:'maokong',band:'#6aa84a'},{name:'中正紀念堂',tl:'Tiong-tsìng Kì-liām-tông',theme:'cks',band:'#2a4a9a'},
+    {name:'大稻埕',tl:'Tuā-tiū-tiânn',theme:'dadaocheng',band:'#f0a050'}],
+  kaohsiung:[
+    {name:'駁二',tl:'Pok-jī',theme:'pier2',band:'#c8a060'},{name:'愛河',tl:'Ài-hô',theme:'loveriver',band:'#5a6ab8'},
+    {name:'旗津',tl:'Kî-tin',theme:'sea',band:'#2a9fd6'},{name:'西子灣',tl:'Se-tsú-uan',theme:'sizihwan',band:'#e8805a'},
+    {name:'蓮池潭',tl:'Liân-tî-thâm',theme:'lotus',band:'#e8b84a'},{name:'美麗島站',tl:'Bí-lē-tó-tsām',theme:'formosa',band:'#8a3ab8'},
+    {name:'佛光山',tl:'Hu̍t-kong-san',theme:'fgs',band:'#d8a838'},{name:'衛武營',tl:'Uē-bú-iânn',theme:'weiwuying',band:'#9ab0c0'},
+    {name:'六合夜市',tl:'La̍k-ha̍p Iā-tshī',theme:'liuhe',band:'#d93a2b'},{name:'柴山',tl:'Tshâ-suann',theme:'chaishan',band:'#4f9b4a'},
+    {name:'港都',tl:'Káng-too',theme:'harbor',band:'#f0a050'}],
+};
+const ROACH_KING={type:'roach',name:'虼蚻王',tl:'Ka-tsua̍h-ông'},MOSQ_KING={type:'mosq',name:'蠓仔王',tl:'Báng-á-ông'};
+const WORLDS={
+  island:{name:'環島',lo:'Khuân-tó',route:'環島路線',routeLo:'Khuân-tó lōo-suànn',boss:ROACH_KING,key:0},
+  tainan:{name:'台南',lo:'Tâi-lâm',route:'府城路線',routeLo:'Hú-siânn lōo-suànn',boss:MOSQ_KING,key:2},
+  taipei:{name:'台北',lo:'Tâi-pak',route:'台北路線',routeLo:'Tâi-pak lōo-suànn',boss:ROACH_KING,key:-1},
+  kaohsiung:{name:'高雄',lo:'Ko-hiông',route:'港都路線',routeLo:'Káng-too lōo-suànn',boss:MOSQ_KING,key:3},
+};
+const LEVELS=Object.entries(MAPS).flatMap(([w,list])=>list.map((d,n)=>({...STAGES[n],...d,world:w,n})));
+const LAST=STAGES.length-1;
+const sk=i=>LEVELS[i].world+':'+LEVELS[i].n;
+const NUM=['一','二','三','四','五','六','七','八','九','十','十一'];
 const THEMES={
   night:{sky:['#120a2a','#341552','#6a2457'],ground:'#2c2236',top:'#e8a53a',brick:'#8a3b2e',line:'#5c2620'},
   temple:{sky:['#3b1d4a','#b4495a','#f59a52'],ground:'#6e2a22',top:'#d9a35a',brick:'#a8432f',line:'#6d241a'},
@@ -288,11 +343,41 @@ const THEMES={
   sicao:{sky:['#1e3a26','#3a6a40','#8ab878'],ground:'#5a4632',top:'#6a9a4a',brick:'#7a5a3a',line:'#4a3420'},
   eternal:{sky:['#4a3a6a','#d0705a','#f8c070'],ground:'#6a5a4a',top:'#b8a888',brick:'#8a7a64',line:'#5a4a3a'},
   fucheng:{sky:['#0a1028','#1e2a58','#4a3a70'],ground:'#262038',top:'#f0a050',brick:'#5a3a5a',line:'#33203a'},
+  snow:{sky:['#7aa8d8','#c8dcf0','#f0f4fa'],ground:'#cdd8e4',top:'#ffffff',brick:'#8a9aac',line:'#5a6a7c'},
+  yehliu:{sky:['#5ab4e8','#a8dcf4','#e8f6fc'],ground:'#b8905e',top:'#e0c090',brick:'#c09060',line:'#8a6038'},
+  balloon:{sky:['#5ab4ec','#a8dcf6','#eaf8ff'],ground:'#6a5a3a',top:'#7ab84a',brick:'#a8743c',line:'#6a4a24'},
+  chimei:{sky:['#6ab8ec','#b8e0f4','#f4f8fa'],ground:'#a8a090',top:'#f0ece4',brick:'#b8a890',line:'#8a7a64'},
+  wushantou:{base:'lake',noPagoda:true,water:['#5a9ab8','#2a5a7a'],ridges:['#6a9a8a','#4a7a6a'],sun:'rgba(255,250,220,.95)',sky:['#5aa8d8','#a8d8e8','#e8f0e0'],ground:'#4a3a2a',top:'#6aa86a',brick:'#8a5a3a',line:'#5a3a24'},
+  beehive:{fireworks:true,sky:['#08061a','#1a1030','#3a1a3a'],ground:'#2a1e22',top:'#d8a050',brick:'#6a3a2a',line:'#3e2018'},
+  taipei101:{sky:['#5aa8e0','#a8d4f0','#e8f4fa'],ground:'#5a6470',top:'#a8b4c0',brick:'#7a8a9a',line:'#4a5866'},
+  lungshan:{base:'temple',names:[['龍山寺','Liông-san-sī'],['艋舺','Báng-kah'],['青山宮','Tshing-san-kiong']],sky:['#2a1840','#8a3a5a','#e8804a'],ground:'#6e2a22',top:'#d9a35a',brick:'#a8432f',line:'#6d241a'},
+  ximen:{sky:['#1a1036','#4a2050','#a84a6a'],ground:'#2a2236',top:'#e86aa0',brick:'#6a3a5a',line:'#3a2038'},
+  dihua:{base:'shennong',templeName:['霞海城隍廟','Hâ-hái Sîng-hông-biō'],sky:['#2a2048','#8a4a6a','#e89a6a'],ground:'#4a3428',top:'#c09060',brick:'#7a5038',line:'#4a2e1c'},
+  shilin:{base:'night',names:[['大餅包小餅','tuā-piánn pau sió-piánn'],['胡椒餅','hôo-tsio-piánn'],['士林香腸','Sū-lîm ian-tshiâng'],['青草茶','tshenn-tsháu-tê'],['麻糬','muâ-tsî'],['藥燉排骨','io̍h-tūn pâi-kut'],['蚵仔煎','ô-á-tsian'],['臭豆腐','tshàu-tāu-hū']],sky:['#0e0c2e','#2a1a56','#5a2a66'],ground:'#2c2236',top:'#e8a53a',brick:'#8a3b2e',line:'#5c2620'},
+  tamsui:{sky:['#3a2a5a','#c8607a','#f8b070'],ground:'#5a4030',top:'#c8905a',brick:'#a8583a',line:'#6a3420'},
+  beitou:{sky:['#8ab0a8','#c8dcd4','#eef4f0'],ground:'#5a5040',top:'#8aa070',brick:'#8a7458',line:'#5a4a38'},
+  yangming:{base:'mountain',sakura:true,sky:['#8ac4e8','#d4ecf4','#fbeef0'],ground:'#5a4a34',top:'#7ab85a',brick:'#9a6a4e',line:'#6a4a2f'},
+  maokong:{sky:['#7ab8e0','#c4e4f0','#f0f6ea'],ground:'#5a4a30',top:'#6aa84a',brick:'#8a6a40',line:'#5a4428'},
+  cks:{sky:['#4a9ae0','#a0d0f0','#eaf4fc'],ground:'#a8a49c',top:'#f4f2ee',brick:'#a8a49c',line:'#7a766e'},
+  dadaocheng:{base:'fucheng',noLin:true,fireworks:true,sky:['#0a1028','#1e2a58','#4a3a70'],ground:'#262038',top:'#f0a050',brick:'#5a3a5a',line:'#33203a'},
+  pier2:{sky:['#5ab0e0','#a8d8f0','#f0f0e8'],ground:'#5a5450',top:'#c8a060',brick:'#8a6a5a',line:'#5a4038'},
+  loveriver:{base:'fucheng',noLin:true,boats:true,sky:['#0a1430','#1e2e5a','#5a3a6a'],ground:'#262038',top:'#e8b060',brick:'#4a3a6a',line:'#2a2040'},
+  sizihwan:{sky:['#3a2a5a','#d06a6a','#f8b860'],ground:'#7a5a40',top:'#c8a070',brick:'#a8583a',line:'#6a3420'},
+  lotus:{sky:['#5ab4e8','#a8dcf4','#eef8fa'],ground:'#7a5a3a',top:'#d8b070',brick:'#c0503a',line:'#7a2c1e'},
+  formosa:{sky:['#140e1a','#1e1428','#2a1e34'],ground:'#2a2430',top:'#e8c060',brick:'#4a3a5a',line:'#2a2038'},
+  fgs:{sky:['#7ab0d8','#e8d4a8','#f8c880'],ground:'#8a6a4a',top:'#d8b070',brick:'#b0884e',line:'#7a5a30'},
+  weiwuying:{sky:['#5ab4e8','#b0dcf0','#eef8fa'],ground:'#4a5a3a',top:'#7ab85a',brick:'#8a7a5a',line:'#5a4a38'},
+  liuhe:{base:'night',names:[['木瓜牛奶','bo̍k-kue gû-ling'],['海產粥','hái-sán-muâi'],['鱔魚意麵','siān-hî ì-mī'],['烘鰇魚','hang jiû-hî'],['滷味','lóo-bī'],['粉圓冰','hún-înn-ping'],['牛排','gû-pâi'],['臭豆腐','tshàu-tāu-hū']],sky:['#140a26','#3a1650','#7a2a50'],ground:'#2c2236',top:'#e8a53a',brick:'#8a3b2e',line:'#5c2620'},
+  chaishan:{base:'mountain',monkeys:true,sky:['#6ab8e0','#bfe4f0','#e8f4e0'],ground:'#6b4a2f',top:'#4f9b4a',brick:'#9a6a3e',line:'#6b4a2f'},
+  harbor:{fireworks:true,sky:['#060a1e','#101a3a','#2a2a5a'],ground:'#1a2036',top:'#f0a050',brick:'#3a4a6a',line:'#22283e'},
 };
 
 /* ---------- save ---------- */
-const SAVE={stars:{},book:{},pearls:0,muted:false,rom:'tl',script:'han',world:'island',hero:'hantsia',v:2};
-try{const s=JSON.parse(localStorage.getItem('hantsia-save')||'{}');if(s.v!==2&&s.stars&&s.stars[5]){s.stars[7]=s.stars[5];delete s.stars[5]}s.v=2;Object.assign(SAVE,s)}catch(e){}
+const SAVE={stars:{},book:{},pearls:0,muted:false,rom:'tl',script:'han',world:'island',hero:'hantsia',v:3};
+try{const s=JSON.parse(localStorage.getItem('hantsia-save')||'{}');
+  if(s.stars&&(s.v||1)<3){const old=s.stars,ns={};if((s.v||1)<2&&old[5]){old[7]=old[5];delete old[5]}
+    for(const k in old){const i=+k;if(!(i>=0))continue;const key=i<=6?'island:'+i:i===7?'island:10':i<=14?'tainan:'+(i-8):i===15?'tainan:10':null;if(key)ns[key]=old[k]}s.stars=ns}
+  s.v=3;if(!MAPS[s.world])delete s.world;Object.assign(SAVE,s)}catch(e){}
 
 /* ---------- romanization: Tâi-lô → Pe̍h-ōe-jī ---------- */
 const TONE='[\\u0300-\\u030F]';
@@ -310,9 +395,9 @@ const R=s=>SAVE.rom==='poj'?tl2poj(s):s;
 const tipR=s=>s.replace(/\{([^}]+)\}/g,(m,k)=>R(k));
 const isLo=()=>SAVE.script==='lo';
 const X=(han,lo)=>isLo()?R(lo):han;
-const NUM_LO=['it','jī','sann','sì','gōo','la̍k','tshit','peh'];
+const NUM_LO=['it','jī','sann','sì','gōo','la̍k','tshit','peh','káu','tsa̍p','tsa̍p-it'];
 const kuanName=i=>{const n=LEVELS[i].n;return X(`第${NUM[n]}關`,`Tē-${NUM_LO[n]} kuan`)};
-const typeName=t=>X(t,{'子音':'tsú-im','母音':'bó-im','複合母音':'ho̍k-ha̍p bó-im'}[t]);
+const typeName=t=>X(t,{'子音':'tsú-im','母音':'bó-im','複合母音':'ho̍k-ha̍p bó-im','鼻化韻':'phīnn-huà-ūn','入聲':'ji̍p-siann','聲調':'siann-tiāu'}[t]);
 function applyScript(){const lo=isLo();FD=lo?FR:FD_H;FB=lo?FR:FB_H;document.body.classList.toggle('lo',lo);document.title=lo?R('Han-tsî-á Tāi Mōo-hiám'):'番薯仔大冒險'}
 const LO_TIP={
 p:'Nn̄g-pîng tshuì-tûn ha̍p--khí-lâi koh pàng--khui, khuì khin-khin, bô sàng-khì.',
@@ -343,8 +428,17 @@ iu:'Uì {i} tshu kàu {u}, bué-im tshuì-tûn ài înn.',
 io:'Uì {i} tshu kàu {o}. Huâ-gí bô tsit khuán tsoo-ha̍p!',
 ua:'Uì {u} tshu kàu {a}.',ue:'Uì {u} tshu kàu {e}.',
 ui:'Uì {u} tshu kàu {i}, bué-im sī tshing-tshó ê {i}.',
-iau:'{i} + {a} + {u} sann ê im liân--khí-lâi.',uai:'{u} + {a} + {i} sann ê im liân--khí-lâi.'};
-const zyOf=k=>isLo()?LETTERS[k].zy.replace('放字頭',''):LETTERS[k].zy;
+iau:'{i} + {a} + {u} sann ê im liân--khí-lâi.',uai:'{u} + {a} + {i} sann ê im liân--khí-lâi.',
+ann:'{a} ê sî-tsūn, khuì kāng-sî uì phīnn-khang tshut--lâi. {nn} sī phīnn-huà ê kì-hō, m̄-sī nn̄g ê n!',
+inn:'{i} ê sî-tsūn, khuì kāng-sî uì phīnn-khang tshut--lâi.',enn:'{e} ê sî-tsūn, khuì kāng-sî uì phīnn-khang tshut--lâi.',
+iann:'{ia} ê sî-tsūn, khuì kāng-sî uì phīnn-khang tshut--lâi.',uann:'{ua} ê sî-tsūn, khuì kāng-sî uì phīnn-khang tshut--lâi.',
+'-p':'Tshuì-tûn ha̍p--khí-lâi siu-bué, m̄-bián pàng--khui. Siann té-té.','-t':'Tsi̍h-tsiam tú tiâu tíng-khí āu-piah siu-bué, m̄-bián pàng--khui.',
+'-k':'Tsi̍h-kin tú tiâu siu-bué, m̄-bián pàng--khui.','-h':'Âu-lâng hut-jiân tòng--tiâu, siann té-té thîng--lo̍h-lâi.',
+t1:'Tē-it tiāu: siann kuân-kuân, pênn-pênn. Bô tiāu-hō.',t2:'Tē-jī tiāu: siann uì kuân kàng--lo̍h-lâi. Tiāu-hō sī á.',
+t3:'Tē-sann tiāu: siann kē-kē tîm--lo̍h-khì. Tiāu-hō sī à.',t4:'Tē-sì tiāu: té-té ê im, bué-im p, t, k, h. Bô tiāu-hō.',
+t5:'Tē-gōo tiāu: siann uì kē peh--khí-lâi, ná-tshin teh mn̄g būn-tê. Tiāu-hō sī â.',t7:'Tē-tshit tiāu: siann pênn-pênn, tiong-tiong. Tiāu-hō sī ā.',
+t8:'Tē-peh tiāu: té-té ê kuân im, bué-im p, t, k, h. Tiāu-hō sī a̍h.'};
+const zyOf=k=>isLo()?LETTERS[k].zy.replace(/放字頭|收尾/g,'').replace('鼻化','~').replace('喉塞','ʔ'):LETTERS[k].zy;
 const tipOf=k=>isLo()?R(tipR(LO_TIP[k])):tipR(LETTERS[k].tip);
 function persist(){try{localStorage.setItem('hantsia-save',JSON.stringify(SAVE))}catch(e){}}
 
@@ -398,7 +492,7 @@ function mkMosq(x,y,range=90){return{type:'mosq',x,y,x0:x,y0:y,w:28,h:20,alive:t
 
 function buildLevel(li,demo=false){
   const def=LEVELS[li],r=rng(li*7919+3);
-  const keys=def.challenge?shuffle(ALL.slice()).slice(0,8):def.letters.slice();
+  const keys=def.challenge?shuffle(ALL.slice()).slice(0,def.boss?5:8):def.letters.slice();
   const g={li,def,demo,theme:THEMES[def.theme],solids:[],enemies:[],pearls:[],gates:[],checks:[{x:60}],signs:[],parts:[],
     t:0,camX:0,hearts:3,got:0,wrong:0,keys,toast:null,pending:null,check:60,winT:0};
   const pits=[];
@@ -427,9 +521,8 @@ function buildLevel(li,demo=false){
     g.enemies.push(mkRoach(x0+560));
     if(def.n>0||i>1)g.enemies.push(mkMosq(x0+640,GY-150));
     if(def.n>=3&&r()<.6)g.enemies.push(mkRoach(x0+460));
-    const ws=LETTERS[key].words;
-    const word=def.challenge&&!isVowel(key)?ws[Math.random()<.5?0:1]:ws[1];
-    const opts=shuffle([key,...shuffle(groupOf(key).filter(k=>k!==key),r).slice(0,2)],r);
+    const word=pickWord(key,def.challenge);
+    const opts=pickOpts(key,r);
     const gate={key,word,opts,x:x0+820,solved:false,wrong:0,blocks:[]};
     opts.forEach((k,j)=>gate.blocks.push(add(x0+820+j*120,GY-4*T,'answer',{key:k,gate})));
     gate.barrier=add(x0+1180,-600,'barrier',{h:GY+600,gate,open:-1});
@@ -437,6 +530,17 @@ function buildLevel(li,demo=false){
     g.checks.push({x:x0+1240});
     x+=1300;
   });
+  if(def.boss){
+    const x0=x,B=WORLDS[def.world].boss,key=ALL[Math.floor(Math.random()*ALL.length)];
+    const gate={key,word:pickWord(key,true),opts:pickOpts(key,Math.random),x:x0+260,solved:false,wrong:0,blocks:[],boss:true};
+    for(let j=0;j<3;j++)gate.blocks.push(add(x0+320+j*180,GY-4*T,'answer',{key:gate.opts[j]||key,gate,dead:j>=gate.opts.length}));
+    gate.barrier=add(x0+1060,-600,'barrier',{h:GY+600,gate,open:-1});
+    g.gates.push(gate);g.checks.push({x:x0+40});
+    const fly=B.type==='mosq';
+    g.boss={type:'boss',fly,name:B.name,tl:B.tl,x:x0+760,y:fly?GY-270:GY-78,w:96,h:fly?70:78,vx:-80,vy:0,hp:5,max:5,minX:x0+160,maxX:x0+1040,alive:true,dead:0,t:0,hurtT:0,gate};
+    g.enemies.push(g.boss);
+    x+=1120;
+  }
   g.goal={x:x+180,y:GY-100,w:56,h:96,baseY:GY-100};
   pearlRow(x,GY-50,4);
   g.width=x+560;
@@ -450,16 +554,17 @@ function buildLevel(li,demo=false){
 
 /* ---------- backgrounds ---------- */
 function makeBG(g){
-  const r=rng(g.li*31+7),th=g.def.theme,bg={stars:[],far:[],mid:[],fx:[]};
+  const r=rng(g.li*31+7),TH=THEMES[g.def.theme],th=TH.base||g.def.theme,bg={stars:[],far:[],mid:[],fx:[]};
   for(let i=0;i<70;i++)bg.stars.push({x:r()*W,y:r()*260,s:r()*1.6+.4,p:r()*6});
   const span=f=>g.width*f+W+400;
+  if(EXTRA_MK[th]){EXTRA_MK[th](g,bg,r,span);return bg}
   if(th==='night'){
     for(let x=-40;x<span(.18);){const w=40+r()*60,h=80+r()*150,wins=[];for(let wy=12;wy<h-10;wy+=16)for(let wx=8;wx<w-8;wx+=14)if(r()<.25)wins.push([wx,wy]);bg.far.push({x,w,h,wins});x+=w+r()*8}
-    const names=[['蚵仔煎','ô-á-tsian'],['珍珠奶茶','tsin-tsu ling-tê'],['雞排','ke-pâi'],['臭豆腐','tshàu-tāu-hū'],['滷肉飯','lóo-bah-pn̄g'],['肉圓','bah-uân'],['碗粿','uánn-kué'],['烘番麥','hang huan-be̍h'],['擔仔麵','tànn-á-mī'],['甜不辣','thiân-pu-lá'],['糖葫蘆','thn̂g-hôo-lôo'],['鹹酥雞','kiâm-soo-ke']];
+    const names=TH.names||[['蚵仔煎','ô-á-tsian'],['珍珠奶茶','tsin-tsu ling-tê'],['雞排','ke-pâi'],['臭豆腐','tshàu-tāu-hū'],['滷肉飯','lóo-bah-pn̄g'],['肉圓','bah-uân'],['碗粿','uánn-kué'],['烘番麥','hang huan-be̍h'],['擔仔麵','tànn-á-mī'],['甜不辣','thiân-pu-lá'],['糖葫蘆','thn̂g-hôo-lôo'],['鹹酥雞','kiâm-soo-ke']];
     const cols=[['#a8302a','#e8d4ad'],['#23695a','#e8d4ad'],['#b8741c','#f3e2bb'],['#33508f','#e8d4ad']];
     for(let x=0,i=0;x<span(.45);i++){const w=150+r()*60;bg.mid.push({x,w,c:cols[i%4],name:names[Math.floor(r()*names.length)]});x+=w+50+r()*70}
   }else if(th==='temple'){
-    const names=[['媽祖宮','Má-tsóo-king'],['土地公','Thóo-tī-kong'],['福德祠','Hok-tik-sû'],['天公廟','Thinn-kong-biō'],['保安宮','Pó-an-kiong']];
+    const names=TH.names||[['媽祖宮','Má-tsóo-king'],['土地公','Thóo-tī-kong'],['福德祠','Hok-tik-sû'],['天公廟','Thinn-kong-biō'],['保安宮','Pó-an-kiong']];
     for(let x=0;x<span(.4);){const w=200+r()*90;bg.mid.push({x,w,h:80+r()*50,name:names[Math.floor(r()*names.length)]});x+=w+140+r()*160}
   }else if(th==='rain'){
     const names=[['芋圓'],['茶'],['草仔粿'],['魚丸'],['肉圓']];
@@ -496,7 +601,7 @@ function makeBG(g){
     for(let x=100,k=0;x<span(.4);k++){if(k%4===0){bg.mid.push({x,kind:'gate'});x+=320}else{bg.mid.push({x,kind:'cannon'});x+=150+r()*90}}
   }else if(th==='fucheng'){
     for(let x=-40;x<span(.15);){const w=40+r()*60,h=40+r()*90;bg.far.push({x,w,h});x+=w+r()*10}
-    for(let x=80,k=0;x<span(.4);k++){if(k%5===0){bg.mid.push({x,kind:'lin',w:230});x+=260}else{const w=70+r()*40;bg.mid.push({x,kind:'shop',w,h:110+r()*50});x+=w}}
+    for(let x=80,k=0;x<span(.4);k++){if(k%5===0&&!TH.noLin){bg.mid.push({x,kind:'lin',w:230});x+=260}else{const w=70+r()*40;bg.mid.push({x,kind:'shop',w,h:110+r()*50});x+=w}}
   }else if(th==='city'){
     for(let x=-40;x<span(.15);){if(Math.floor(x/900)!==Math.floor((x-80)/900)&&x>0){bg.far.push({x,tower:true});x+=110;continue}
       const w=40+r()*70,h=60+r()*140,wins=[];for(let wy=10;wy<h-8;wy+=14)for(let wx=6;wx<w-6;wx+=12)if(r()<.3)wins.push([wx,wy]);bg.far.push({x,w,h,wins});x+=w+r()*6}
@@ -520,7 +625,8 @@ function drawBG(g){
   const th=g.theme,bg=g.bg,cam=g.camX,t=g.t;
   const gr=ctx.createLinearGradient(0,0,0,GY);gr.addColorStop(0,th.sky[0]);gr.addColorStop(.55,th.sky[1]);gr.addColorStop(1,th.sky[2]);
   ctx.fillStyle=gr;ctx.fillRect(0,0,W,H);
-  const T_=g.def.theme;
+  const T_=th.base||g.def.theme;
+  if(EXTRA_BG[T_]){EXTRA_BG[T_](g,cam,t,bg,th);if(th.fireworks)drawFireworks(g);return}
   if(T_==='night'||T_==='city'){
     for(const s of bg.stars){ctx.globalAlpha=.4+.6*Math.abs(Math.sin(t*1.3+s.p));ctx.fillStyle='#fff3d0';ctx.fillRect(((s.x-cam*.03)%W+W)%W,s.y,s.s,s.s)}
     ctx.globalAlpha=1;
@@ -580,7 +686,9 @@ function drawBG(g){
     ridge(cam,.24,400,90,2,6,'#557ba5');
     for(const s of bg.mid){const sx=s.x-cam*.55;if(sx>W+60||sx<-60)continue;
       ctx.fillStyle='#4a2e1c';ctx.fillRect(sx-4,GY-40,8,40);
-      for(let k=0;k<4;k++){ctx.fillStyle=k%2?'#2f6b4f':'#24533f';const y=GY-30-k*s.h/4.6,w=s.w*(1-k*.18);ctx.beginPath();ctx.moveTo(sx-w/2,y);ctx.lineTo(sx,y-s.h/3);ctx.lineTo(sx+w/2,y);ctx.fill()}
+      if(th.sakura){ctx.fillStyle='#5a3a2a';ctx.fillRect(sx-4,GY-s.h*.55,8,s.h*.55);ctx.fillStyle='#f4a8c0';oval(ctx,sx,GY-s.h*.6,s.w*.9,s.h*.22);ctx.fillStyle='#f8c4d4';oval(ctx,sx-s.w*.4,GY-s.h*.68,s.w*.55,s.h*.16);oval(ctx,sx+s.w*.4,GY-s.h*.66,s.w*.5,s.h*.15)}
+      else for(let k=0;k<4;k++){ctx.fillStyle=k%2?'#2f6b4f':'#24533f';const y=GY-30-k*s.h/4.6,w=s.w*(1-k*.18);ctx.beginPath();ctx.moveTo(sx-w/2,y);ctx.lineTo(sx,y-s.h/3);ctx.lineTo(sx+w/2,y);ctx.fill()}
+      if(th.monkeys&&s.h>215){const my=GY-s.h*.55+Math.sin(t*2+s.x)*3;ctx.fillStyle='#8a6a4a';oval(ctx,sx+8,my,9,11);oval(ctx,sx+8,my-13,7,7);ctx.fillStyle='#e8b8a0';oval(ctx,sx+10,my-12,4,4.5);ctx.fillStyle='#222';oval(ctx,sx+9,my-14,1,1);oval(ctx,sx+12,my-14,1,1);ctx.strokeStyle='#8a6a4a';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(sx,my+6);ctx.quadraticCurveTo(sx-12,my+14,sx-8,my+24);ctx.stroke()}
     }
   }else if(T_==='sea'){
     ctx.fillStyle='rgba(255,252,220,.95)';oval(ctx,180,100,40,40);
@@ -595,11 +703,11 @@ function drawBG(g){
         ctx.fillStyle='#2f8a4a';for(let k=0;k<6;k++){const a=k/6*Math.PI*2+Math.sin(t*1.2)*.08;ctx.save();ctx.translate(tx,ty);ctx.rotate(a);ctx.beginPath();ctx.ellipse(28,6,32,8,.35,0,Math.PI*2);ctx.fill();ctx.restore()}}
     }
   }else if(T_==='lake'){
-    ctx.fillStyle='rgba(255,220,170,.9)';oval(ctx,620,250,46,46);
-    ridge(cam,.06,250,90,2,5,'#5a4a78');
-    ridge(cam,.14,300,70,4,1,'#3e3a62');
-    {const px=((900-cam*.14)%2200+2200)%2200-200,py=232;ctx.fillStyle='#3e3a62';for(let k=0;k<9;k++){const w=16-k*1.2;ctx.fillRect(px-w/2,py-k*9,w,7);ctx.fillRect(px-w/2-3,py-k*9+6,w+6,2)}ctx.fillRect(px-1,py-90,2,12)}
-    const lg=ctx.createLinearGradient(0,320,0,GY);lg.addColorStop(0,'#c47a86');lg.addColorStop(1,'#3a4a78');ctx.fillStyle=lg;ctx.fillRect(0,320,W,GY-320);
+    ctx.fillStyle=th.sun||'rgba(255,220,170,.9)';oval(ctx,620,250,46,46);
+    ridge(cam,.06,250,90,2,5,(th.ridges||['#5a4a78'])[0]);
+    ridge(cam,.14,300,70,4,1,(th.ridges||[0,'#3e3a62'])[1]);
+    if(!th.noPagoda){const px=((900-cam*.14)%2200+2200)%2200-200,py=232;ctx.fillStyle='#3e3a62';for(let k=0;k<9;k++){const w=16-k*1.2;ctx.fillRect(px-w/2,py-k*9,w,7);ctx.fillRect(px-w/2-3,py-k*9+6,w+6,2)}ctx.fillRect(px-1,py-90,2,12)}
+    const lg=ctx.createLinearGradient(0,320,0,GY);lg.addColorStop(0,(th.water||['#c47a86'])[0]);lg.addColorStop(1,(th.water||[0,'#3a4a78'])[1]);ctx.fillStyle=lg;ctx.fillRect(0,320,W,GY-320);
     ctx.fillStyle='rgba(255,220,170,.35)';for(let i=0;i<7;i++){const w=60-i*6+Math.sin(t*2+i)*6;ctx.fillRect(620-w/2,330+i*14,w,3)}
     ctx.fillStyle='#2e5a3a';{const ix=((500-cam*.2)%1800+1800)%1800-200;ctx.beginPath();ctx.ellipse(ix,322,40,10,0,Math.PI,0);ctx.fill()}
     ctx.strokeStyle='rgba(255,255,255,.18)';ctx.lineWidth=1.5;for(let i=0;i<6;i++){const y=350+i*18,o=((t*15-cam*(.2+i*.05))%140+140)%140;ctx.beginPath();for(let x=-140+o;x<W;x+=140){ctx.moveTo(x,y);ctx.lineTo(x+40,y)}ctx.stroke()}
@@ -638,7 +746,7 @@ function drawBG(g){
     for(const st of bg.stars){ctx.globalAlpha=.3+.4*Math.abs(Math.sin(t+st.p));ctx.fillStyle='#fff3d0';ctx.fillRect(st.x,st.y*.6,st.s,st.s)}ctx.globalAlpha=1;
     for(const m of bg.mid){const sx=m.x-cam*.45;if(sx>W+20||sx+m.w<-20)continue;const top=GY-m.h;
       if(m.temple){ctx.fillStyle='#7a2a1e';ctx.fillRect(sx+10,top,m.w-20,m.h);chineseRoof(sx+10,top,m.w-20,'#2a1818');ctx.fillStyle='#ffcc66';ctx.fillRect(sx+m.w/2-24,top+40,48,m.h-40);ctx.fillStyle='#9e2a24';ctx.fillRect(sx+m.w/2-20,top+44,40,m.h-44);
-        const lb=X('藥王廟','Io̍h-ông-biō');ctx.font=`700 15px ${FD}`;const lw=ctx.measureText(lb).width+18;ctx.fillStyle='#2a1818';rr(ctx,sx+m.w/2-lw/2,top+6,lw,24,3);ctx.fill();txt(lb,sx+m.w/2,top+24,`700 15px ${FD}`,'#ffcc66','center');continue}
+        const lb=X(...(th.templeName||['藥王廟','Io̍h-ông-biō']));ctx.font=`700 15px ${FD}`;const lw=ctx.measureText(lb).width+18;ctx.fillStyle='#2a1818';rr(ctx,sx+m.w/2-lw/2,top+6,lw,24,3);ctx.fill();txt(lb,sx+m.w/2,top+24,`700 15px ${FD}`,'#ffcc66','center');continue}
       ctx.fillStyle=m.c;ctx.fillRect(sx,top,m.w,m.h);ctx.fillStyle='rgba(0,0,0,.35)';ctx.fillRect(sx,top,m.w,8);ctx.fillRect(sx+m.w-3,top,3,m.h);
       ctx.fillStyle='rgba(255,207,122,.75)';ctx.fillRect(sx+12,top+22,m.w/2-18,26);ctx.fillRect(sx+m.w/2+6,top+22,m.w/2-18,26);
       ctx.strokeStyle='rgba(30,16,10,.8)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(sx+6,top+60);ctx.lineTo(sx+m.w-6,top+60);for(let x=sx+10;x<sx+m.w-6;x+=8){ctx.moveTo(x,top+60);ctx.lineTo(x,top+72)}ctx.stroke();
@@ -698,6 +806,7 @@ function drawBG(g){
         ctx.fillStyle='#c8352b';ctx.fillRect(sx+w-60,top-26,4,26);ctx.fillRect(sx+w-34,top-26,4,26);ctx.fillRect(sx+w-66,top-30,42,5);ctx.fillRect(sx+w-62,top-22,34,3);
         const lb=X('林百貨','Lîm Pah-huè');ctx.font=`700 16px ${FD}`;const lw=ctx.measureText(lb).width+18;ctx.fillStyle='#2a2018';rr(ctx,sx+16,top+190,lw,26,3);ctx.fill();txt(lb,sx+16+lw/2,top+209,`700 16px ${FD}`,'#ffd890','center')}
       else{const top=GY-46-m.h;ctx.fillStyle='#2e2440';ctx.fillRect(sx,top,m.w,m.h);ctx.fillStyle='rgba(255,207,122,.6)';ctx.fillRect(sx+10,top+16,m.w-20,20);for(let k=0;k<2;k++)lanternAt(sx+m.w*(k+1)/3,top+60,.8,t)}}
+    if(th.boats)for(let k=0;k<3;k++){const bx=((k*380+t*26-cam*.45)%(W+300)+W+300)%(W+300)-150,by=GY-30+Math.sin(t*1.6+k)*1.5;ctx.fillStyle='#e8e0d0';ctx.beginPath();ctx.moveTo(bx-46,by);ctx.lineTo(bx+46,by);ctx.lineTo(bx+34,by+12);ctx.lineTo(bx-34,by+12);ctx.fill();ctx.fillStyle='#2a3a6a';ctx.fillRect(bx-26,by-14,52,14);ctx.fillStyle='rgba(255,214,140,.9)';for(let w=0;w<4;w++)ctx.fillRect(bx-22+w*12,by-11,8,7);ctx.fillStyle='rgba(255,214,140,.25)';ctx.fillRect(bx-40,by+14,80,3)}
   }else if(T_==='city'){
     ctx.fillStyle='#f6edd0';oval(ctx,160,90,22,22);
     for(const b of bg.far){const sx=b.x-cam*.15;if(sx>W+120||sx<-140)continue;
@@ -705,7 +814,222 @@ function drawBG(g){
       ctx.fillStyle='#14204a';ctx.fillRect(sx,GY-40-b.h,b.w,b.h+40);ctx.fillStyle='rgba(170,210,255,.5)';for(const [wx,wy] of b.wins)ctx.fillRect(sx+wx,GY-40-b.h+wy,5,7)}
     for(const l of bg.mid){const y=((l.y-t*l.v)%H+H)%H,x=l.x+Math.sin(t*.5+l.p)*10;ctx.fillStyle='rgba(255,170,80,.18)';oval(ctx,x,y,14*l.s,14*l.s);ctx.fillStyle='#ffb04a';ctx.beginPath();ctx.moveTo(x-7*l.s,y-9*l.s);ctx.lineTo(x+7*l.s,y-9*l.s);ctx.lineTo(x+5*l.s,y+8*l.s);ctx.lineTo(x-5*l.s,y+8*l.s);ctx.fill()}
   }
+  if(th.fireworks)drawFireworks(g);
 }
+function plaque(lb,cx,y,bg,fg,size=15){ctx.font=`700 ${size}px ${FD}`;const lw=ctx.measureText(lb).width+18;ctx.fillStyle=bg;rr(ctx,cx-lw/2,y,lw,size+11,4);ctx.fill();txt(lb,cx,y+size+3,`700 ${size}px ${FD}`,fg,'center')}
+function each(list,cam,f,pad,cb){for(const m of list){const sx=m.x-cam*f;if(sx<-pad||sx>W+pad)continue;cb(m,sx)}}
+function wrapX(x,cam,f,period){return ((x-cam*f)%period+period)%period-200}
+function starsBG(g,cam,t,a=.6){for(const st of g.bg.stars){ctx.globalAlpha=.3+a*Math.abs(Math.sin(t*1.2+st.p));ctx.fillStyle='#fff3d0';ctx.fillRect(((st.x-cam*.03)%W+W)%W,st.y,st.s,st.s)}ctx.globalAlpha=1}
+function waterBand(y0,c1,c2,t,cam){const g2=ctx.createLinearGradient(0,y0,0,GY);g2.addColorStop(0,c1);g2.addColorStop(1,c2);ctx.fillStyle=g2;ctx.fillRect(0,y0,W,GY-y0);ctx.strokeStyle='rgba(255,255,255,.25)';ctx.lineWidth=2;for(let i=0;i<6;i++){const y=y0+12+i*16,o=((t*16-cam*(.15+i*.05))%130+130)%130;ctx.beginPath();for(let x=-130+o;x<W;x+=130){ctx.moveTo(x,y);ctx.lineTo(x+36,y)}ctx.stroke()}}
+function drawFireworks(g){
+  const bg=g.bg;if(!bg.fw)bg.fw=[];
+  if(mode!=='menu'&&Math.random()<.03)bg.fw.push({x:80+Math.random()*(W-160),y:50+Math.random()*170,t0:g.t,c:['#ffd36a','#ff6a8a','#7ef0c8','#9ab8ff','#ff9a4a'][Math.floor(Math.random()*5)]});
+  bg.fw=bg.fw.filter(f=>g.t-f.t0<1.6);
+  for(const f of bg.fw){const a=g.t-f.t0,r=Math.min(1,a*1.6)*90;ctx.globalAlpha=Math.max(0,1-a/1.6);ctx.fillStyle=f.c;
+    for(let i=0;i<24;i++){const an=i/24*Math.PI*2;oval(ctx,f.x+Math.cos(an)*r,f.y+Math.sin(an)*r+a*a*24,2.2,2.2)}
+    if(a<.12){ctx.fillStyle='#fff';oval(ctx,f.x,f.y,10,10)}}
+  ctx.globalAlpha=1;
+}
+const EXTRA_MK={
+  snow(g,bg,r,span){for(let x=0;x<span(.5);){bg.mid.push({x,h:90+r()*90});x+=50+r()*90}for(let x=300;x<span(.5);x+=1400)bg.far.push({x});for(let i=0;i<90;i++)bg.fx.push({x:r()*W,y:r()*H,v:30+r()*40,s:1+r()*2,p:r()*6})},
+  yehliu(g,bg,r,span){for(let x=0,k=0;x<span(.45);k++){if(k%5===2){bg.mid.push({x,kind:'queen'});x+=260}else{bg.mid.push({x,kind:'mush',w:40+r()*50,h:50+r()*60});x+=90+r()*90}}},
+  balloon(g,bg,r,span){const cs=[['#e8432f','#f5b630'],['#2a7ad8','#f4f0e8'],['#2fa58a','#f5d040'],['#8a3ab8','#ff8ab0'],['#f08a2a','#ffffff']];for(let i=0;i<7;i++)bg.fx.push({x:r()*(W+300),y:70+r()*170,c:cs[i%5],s:.55+r()*.6,p:r()*6});for(let x=200;x<span(.5);x+=900+r()*400)bg.mid.push({x})},
+  chimei(g,bg,r,span){for(let x=100,k=0;x<span(.4);k++){if(k%3===0){bg.mid.push({x,kind:'palace'});x+=480}else{bg.mid.push({x,kind:'statue'});x+=150}}},
+  beehive(g,bg,r,span){for(let i=0;i<50;i++)bg.stars.push({x:r()*W,y:r()*200,s:r()*1.4+.4,p:r()*6});for(let x=60,k=0;x<span(.45);k++){if(k%2===0){bg.mid.push({x,kind:'temple',w:220});x+=320}else{bg.mid.push({x,kind:'tower'});x+=260}}},
+  taipei101(g,bg,r,span){for(let x=-40;x<span(.2);){const w=40+r()*70,h=50+r()*120;bg.far.push({x,w,h});x+=w+r()*12}for(let x=500;x<span(.28);x+=1500)bg.mid.push({x})},
+  ximen(g,bg,r,span){const cs=['#ff4a8a','#4af0f0','#ffe04a','#8a6aff','#ff8a3a'];for(let x=-40;x<span(.15);){const w=40+r()*60,h=80+r()*120;bg.far.push({x,w,h});x+=w+r()*8}
+    for(let x=0,k=0;x<span(.45);k++){if(k%6===2){bg.mid.push({x,kind:'red'});x+=240}else{const w=80+r()*50,signs=[];for(let i=0;i<2;i++)signs.push({c:cs[Math.floor(r()*cs.length)],y:20+i*50+r()*10,v:r()<.5});bg.mid.push({x,kind:'bld',w,h:150+r()*80,signs});x+=w+6}}},
+  tamsui(g,bg,r,span){for(let x=200,k=0;x<span(.4);k++){bg.mid.push({x,kind:k%2?'fort':'bridge'});x+=760+r()*200}},
+  beitou(g,bg,r,span){for(let x=120,k=0;x<span(.42);k++){bg.mid.push({x,kind:k%2?'pool':'lib'});x+=k%2?380:520}for(let i=0;i<22;i++)bg.fx.push({x:r()*W,p:r()*10,s:20+r()*30})},
+  maokong(g,bg,r,span){for(let x=300;x<span(.45);x+=700+r()*300)bg.mid.push({x})},
+  cks(g,bg,r,span){for(let x=200,k=0;x<span(.35);k++){bg.mid.push({x,kind:k%2?'arch':'hall'});x+=820}for(let x=0;x<span(.55);x+=70+r()*40)bg.far.push({x,r:20+r()*14})},
+  pier2(g,bg,r,span){const cs=['#e8432f','#2a7ad8','#f5b630','#2fa58a','#8a3ab8','#ff8ab0'];for(let x=0,k=0;x<span(.42);k++){if(k%4===3){bg.mid.push({x,kind:'robot',c:cs[k%6]});x+=150}else{const w=200+r()*60,murals=[];for(let i=0;i<3;i++)murals.push({x:r()*(w-60),y:20+r()*50,w:30+r()*40,h:20+r()*30,c:cs[Math.floor(r()*6)]});bg.mid.push({x,kind:'ware',w,murals});x+=w+30}}},
+  sizihwan(g,bg,r,span){for(let x=300;x<span(.35);x+=1300)bg.mid.push({x})},
+  lotus(g,bg,r,span){for(let x=250;x<span(.4);x+=1200)bg.mid.push({x});for(let i=0;i<18;i++)bg.fx.push({x:r()*W,y:350+r()*90,s:8+r()*10})},
+  formosa(g,bg,r,span){for(let x=W/2;x<span(.15);x+=1500)bg.mid.push({x})},
+  fgs(g,bg,r,span){for(let x=500;x<span(.22);x+=1500)bg.mid.push({x});for(let x=0;x<span(.35);x+=260)bg.far.push({x})},
+  weiwuying(g,bg,r,span){for(let x=60;x<span(.55);x+=300+r()*200)bg.mid.push({x,r:50+r()*30})},
+  harbor(g,bg,r,span){for(let x=-40;x<span(.15);){const w=30+r()*50,h=30+r()*80;bg.far.push({x,w,h});x+=w+r()*10}for(let x=200,k=0;x<span(.35);k++){bg.mid.push({x,kind:k%3===0?'tower':'crane'});x+=k%3===0?420:260}},
+};
+const EXTRA_BG={
+  snow(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,255,250,.85)';oval(ctx,800,100,36,36);
+    ridge(cam,.05,250,130,1,3,'#f2f6fb');ridge(cam,.08,300,110,3,1,'#9ab4d4');ridge(cam,.14,350,80,4,2,'#c8d8ec');ridge(cam,.24,410,50,2,6,'#e8f0f8');
+    each(bg.far,cam,.5,120,(m,sx)=>{ctx.fillStyle='#5a3a20';ctx.fillRect(sx-3,GY-80,6,80);plaque(X('合歡山','Ha̍p-huan-suann'),sx,GY-112,'#2a4a6a','#ffffff',15)});
+    each(bg.mid,cam,.5,60,(m,sx)=>{ctx.fillStyle='#4a3020';ctx.fillRect(sx-3,GY-24,6,24);for(let k=0;k<3;k++){const y=GY-20-k*m.h/4,w=m.h*.42*(1-k*.22);ctx.fillStyle='#24503c';ctx.beginPath();ctx.moveTo(sx-w/2,y);ctx.lineTo(sx,y-m.h/3);ctx.lineTo(sx+w/2,y);ctx.fill();ctx.fillStyle='#ffffff';ctx.beginPath();ctx.moveTo(sx-w/5,y-m.h/3*.62);ctx.lineTo(sx,y-m.h/3);ctx.lineTo(sx+w/5,y-m.h/3*.62);ctx.fill()}});
+  },
+  yehliu(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,252,220,.95)';oval(ctx,200,100,40,40);
+    ridge(cam,.06,300,50,2,5,'#6a9a6a');waterBand(300,'#2a9ad0','#1a70a8',t,cam);
+    ridge(cam,.45,GY-14,26,3,1,'#b88e5e');
+    each(bg.mid,cam,.45,140,(m,sx)=>{
+      if(m.kind==='queen'){ctx.fillStyle='#b08454';ctx.beginPath();ctx.moveTo(sx-26,GY);ctx.quadraticCurveTo(sx-6,GY-60,sx-4,GY-118);ctx.lineTo(sx+8,GY-118);ctx.quadraticCurveTo(sx+12,GY-60,sx+30,GY);ctx.fill();
+        ctx.fillStyle='#c89a62';oval(ctx,sx+12,GY-148,26,36,-.45);oval(ctx,sx-10,GY-176,15,13);ctx.fillStyle='rgba(120,80,40,.3)';oval(ctx,sx+20,GY-140,10,22,-.45);
+        plaque(X('女王頭','Lú-ông-thâu'),sx,GY-48,'#6a3a1a','#ffe2a0',14)}
+      else{ctx.fillStyle='#a8865a';ctx.fillRect(sx-7,GY-m.h,14,m.h);ctx.fillStyle='#d8b07a';oval(ctx,sx,GY-m.h,m.w/2,m.w/3.4);ctx.strokeStyle='rgba(140,90,40,.45)';ctx.lineWidth=1.5;for(let k=1;k<3;k++){ctx.beginPath();ctx.ellipse(sx,GY-m.h,m.w/2*k/3,m.w/3.4*k/3,0,0,Math.PI*2);ctx.stroke()}}});
+  },
+  balloon(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,252,220,.95)';oval(ctx,820,90,38,38);
+    ridge(cam,.06,280,90,1,4,'#5a8aa0');ridge(cam,.14,340,60,3,2,'#6aa070');
+    ctx.fillStyle='#8ac060';ctx.fillRect(0,360,W,GY-360);ctx.strokeStyle='rgba(90,140,60,.6)';ctx.lineWidth=2;ctx.beginPath();for(let y=370;y<GY;y+=12){ctx.moveTo(0,y);ctx.lineTo(W,y)}ctx.stroke();
+    ctx.fillStyle='#f0d040';for(let k=0;k<4;k++){const x=wrapX(k*420+100,cam,.3,1680);ctx.fillRect(x,380+(k%2)*30,160,22)}
+    for(const b of bg.fx){const sx=((b.x-cam*.15+t*6)%(W+300)+W+300)%(W+300)-150,y=b.y+Math.sin(t*.8+b.p)*8;ctx.save();ctx.translate(sx,y);ctx.scale(b.s,b.s);
+      ctx.fillStyle=b.c[0];oval(ctx,0,0,30,34);ctx.fillStyle=b.c[1];oval(ctx,0,0,11,34);ctx.fillStyle=b.c[0];ctx.beginPath();ctx.moveTo(-22,22);ctx.lineTo(22,22);ctx.lineTo(8,44);ctx.lineTo(-8,44);ctx.fill();
+      ctx.strokeStyle='#5a3a20';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-8,44);ctx.lineTo(-6,52);ctx.moveTo(8,44);ctx.lineTo(6,52);ctx.stroke();ctx.fillStyle='#8a5a2a';ctx.fillRect(-7,52,14,10);ctx.restore()}
+    each(bg.mid,cam,.5,100,(m,sx)=>{ctx.fillStyle='#5a3a20';ctx.fillRect(sx-3,GY-80,6,80);plaque(X('鹿野高台','Lo̍k-iá Ko-tâi'),sx,GY-112,'#2a6a3a','#ffffff',15)});
+  },
+  chimei(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,252,230,.95)';oval(ctx,180,90,36,36);
+    ridge(cam,.08,340,30,2,4,'#8aa880');
+    ctx.fillStyle='#7ab8d8';ctx.fillRect(0,GY-40,W,40);
+    each(bg.mid,cam,.4,420,(m,sx)=>{
+      if(m.kind==='palace'){const w=360;ctx.fillStyle='#e0dcd2';ctx.fillRect(sx-20,GY-62,w+40,22);ctx.fillStyle='#f4f1ea';ctx.fillRect(sx,GY-196,w,134);ctx.fillStyle='#dcd6ca';ctx.fillRect(sx,GY-206,w,12);
+        for(let k=0;k<10;k++){const cx=sx+18+k*(w-36)/9;ctx.fillStyle='#ffffff';ctx.fillRect(cx-6,GY-190,12,128);ctx.fillStyle='rgba(120,110,100,.25)';ctx.fillRect(cx+3,GY-190,3,128)}
+        ctx.fillStyle='#ece6da';ctx.beginPath();ctx.moveTo(sx+110,GY-206);ctx.lineTo(sx+180,GY-246);ctx.lineTo(sx+250,GY-206);ctx.fill();
+        ctx.fillStyle='#f4f1ea';ctx.fillRect(sx+150,GY-286,60,44);ctx.fillStyle='#a8b8a8';ctx.beginPath();ctx.arc(sx+180,GY-286,36,Math.PI,0);ctx.fill();ctx.fillStyle='#d8c070';ctx.fillRect(sx+177,GY-336,6,18);
+        plaque(X('奇美博物館','Kî-bí Phok-bu̍t-kuán'),sx+180,GY-232,'#6a5a3a','#fff4d0',13)}
+      else{ctx.fillStyle='#d8d4cc';ctx.fillRect(sx-14,GY-80,28,40);ctx.fillStyle='#f8f8f4';oval(ctx,sx,GY-128,6,7);ctx.beginPath();ctx.moveTo(sx-8,GY-120);ctx.lineTo(sx+8,GY-120);ctx.lineTo(sx+10,GY-80);ctx.lineTo(sx-10,GY-80);ctx.fill();ctx.fillRect(sx+8,GY-118,14,4)}});
+  },
+  beehive(g,cam,t,bg){
+    starsBG(g,cam,t);
+    each(bg.mid,cam,.45,300,(m,sx)=>{
+      if(m.kind==='temple'){ctx.fillStyle='#5a1e18';ctx.fillRect(sx,GY-130,m.w,130);chineseRoof(sx,GY-130,m.w,'#2a1010');ctx.fillStyle='#ffcc66';ctx.fillRect(sx+m.w/2-24,GY-90,48,90);for(let k=0;k<4;k++)lanternAt(sx+20+k*(m.w-40)/3,GY-118,.9,t)}
+      else{ctx.fillStyle='#4a2a1a';ctx.fillRect(sx-60,GY-180,120,180);ctx.fillStyle='#e8432f';for(let y=GY-170;y<GY-20;y+=12)for(let x=sx-52;x<sx+52;x+=10)ctx.fillRect(x,y,4,7);
+        plaque(X('鹽水蜂炮','Kiâm-tsuí Phang-phàu'),sx,GY-214,'#d93a2b','#ffe27a',15);
+        for(let i=0;i<14;i++){const ph=((t*.9+i*.37)%1),an=-Math.PI/2+(i/13-.5)*2.6,d=ph*300,x=sx+Math.cos(an)*d,y=GY-120+Math.sin(an)*d+ph*ph*80;ctx.strokeStyle=`rgba(255,220,120,${1-ph})`;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-Math.cos(an)*16,y-Math.sin(an)*16);ctx.stroke();ctx.fillStyle=`rgba(255,250,200,${1-ph})`;oval(ctx,x,y,2.5,2.5)}}});
+    ctx.fillStyle='#14101e';for(let x=-20;x<W+20;x+=22){const o=((x+cam*.6)%22+22)%22;oval(ctx,x-o,GY-8,10,12)}
+  },
+  taipei101(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,252,230,.95)';oval(ctx,180,90,36,36);
+    ridge(cam,.06,320,90,2,4,'#7aa890');
+    each(bg.far,cam,.2,120,(b,sx)=>{ctx.fillStyle='#9ab0c4';ctx.fillRect(sx,GY-40-b.h,b.w,b.h+40);ctx.fillStyle='rgba(255,255,255,.35)';for(let y=GY-34-b.h;y<GY-40;y+=12)ctx.fillRect(sx+4,y,b.w-8,3)});
+    each(bg.mid,cam,.28,200,(m,sx)=>{draw101(sx,GY-20,'#4f7f86','rgba(220,250,240,.7)',1.15);plaque(X('台北101','Tâi-pak It-khòng-it'),sx,GY-60,'#1e3a40','#e8fff8',14)});
+  },
+  ximen(g,cam,t,bg){
+    starsBG(g,cam,t,.3);
+    each(bg.far,cam,.15,120,(b,sx)=>{ctx.fillStyle='#22163a';ctx.fillRect(sx,GY-60-b.h,b.w,b.h+60)});
+    each(bg.mid,cam,.45,260,(m,sx)=>{
+      if(m.kind==='red'){ctx.fillStyle='#a8432e';ctx.fillRect(sx,GY-120,200,120);ctx.strokeStyle='rgba(80,20,10,.4)';ctx.lineWidth=1;ctx.beginPath();for(let y=GY-112;y<GY;y+=10){ctx.moveTo(sx,y);ctx.lineTo(sx+200,y)}ctx.stroke();
+        const cx=sx+100;ctx.fillStyle='#b84a32';ctx.beginPath();ctx.moveTo(cx-48,GY);ctx.lineTo(cx-48,GY-150);ctx.lineTo(cx-30,GY-170);ctx.lineTo(cx+30,GY-170);ctx.lineTo(cx+48,GY-150);ctx.lineTo(cx+48,GY);ctx.fill();
+        ctx.fillStyle='#5a3a30';ctx.beginPath();ctx.ellipse(cx,GY-170,32,22,0,Math.PI,0);ctx.fill();ctx.fillStyle='#f4ead8';ctx.fillRect(cx-48,GY-152,96,4);ctx.fillRect(cx-48,GY-92,96,4);
+        ctx.fillStyle='#2a1a1a';for(let k=-1;k<=1;k++){ctx.beginPath();ctx.moveTo(cx+k*28-8,GY-100);ctx.lineTo(cx+k*28-8,GY-128);ctx.arc(cx+k*28,GY-128,8,Math.PI,0);ctx.lineTo(cx+k*28+8,GY-100);ctx.fill()}
+        plaque(X('西門紅樓','Se-mn̂g Âng-lâu'),cx,GY-70,'#3a1a10','#ffd890',14)}
+      else{ctx.fillStyle='#2e2242';ctx.fillRect(sx,GY-m.h,m.w,m.h);ctx.fillStyle='rgba(255,220,160,.35)';for(let y=GY-m.h+12;y<GY-20;y+=22)for(let x=sx+8;x<sx+m.w-10;x+=18)ctx.fillRect(x,y,10,12);
+        for(const sg of m.signs){const gl=.75+.25*Math.sin(t*5+sg.y);ctx.shadowColor=sg.c;ctx.shadowBlur=12;ctx.fillStyle=sg.c;ctx.globalAlpha=gl;if(sg.v)ctx.fillRect(sx+m.w-22,GY-m.h+sg.y,14,48);else ctx.fillRect(sx+10,GY-m.h+sg.y,m.w-20,16);ctx.globalAlpha=1;ctx.shadowBlur=0}}});
+  },
+  tamsui(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,190,110,.95)';oval(ctx,640,300,54,54);
+    for(let k=0;k<3;k++){const x=wrapX(k*800+300,cam,.05,2400);ctx.fillStyle='#5a3a6a';ctx.beginPath();ctx.moveTo(x-260,320);ctx.quadraticCurveTo(x-120,200,x,190);ctx.quadraticCurveTo(x+140,210,x+280,320);ctx.fill()}
+    waterBand(318,'#e8906a','#5a4a7a',t,cam);ctx.fillStyle='rgba(255,210,140,.45)';for(let i=0;i<8;i++){const w=70-i*7+Math.sin(t*2+i)*6;ctx.fillRect(640-w/2,326+i*15,w,3)}
+    each(bg.mid,cam,.4,300,(m,sx)=>{
+      if(m.kind==='bridge'){ctx.strokeStyle='#f4f0ea';ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(sx-200,GY-30);ctx.quadraticCurveTo(sx,GY-70,sx+200,GY-30);ctx.stroke();ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(sx-20,GY-50);ctx.lineTo(sx+20,GY-200);ctx.stroke();
+        ctx.lineWidth=1.2;ctx.beginPath();for(let k=1;k<=6;k++){ctx.moveTo(sx+20-k*3,GY-200+k*22);ctx.lineTo(sx-200+k*30,GY-38-k*3);ctx.moveTo(sx+20-k*3,GY-200+k*22);ctx.lineTo(sx+200-k*24,GY-38-k*3)}ctx.stroke();
+        plaque(X('情人橋','Tsîng-jîn-kiô'),sx,GY-28,'#5a3a6a','#ffe2c0',14)}
+      else{ctx.fillStyle='#b84a32';ctx.fillRect(sx-70,GY-110,140,110);for(let x=sx-70;x<sx+70;x+=20)ctx.fillRect(x,GY-122,12,12);ctx.fillStyle='#f4ead8';for(let k=0;k<4;k++){ctx.beginPath();ctx.arc(sx-48+k*32,GY-40,10,Math.PI,0);ctx.lineTo(sx-38+k*32,GY-10);ctx.lineTo(sx-58+k*32,GY-10);ctx.fill()}
+        ctx.strokeStyle='#3a3a3a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(sx,GY-122);ctx.lineTo(sx,GY-170);ctx.stroke();ctx.fillStyle='#2a6ad8';ctx.fillRect(sx+1,GY-170,22,13);
+        plaque(X('紅毛城','Âng-mn̂g-siânn'),sx,GY-100,'#3a1a10','#ffd890',14)}});
+  },
+  beitou(g,cam,t,bg){
+    ridge(cam,.06,280,100,2,5,'#7a9a8a');ridge(cam,.14,340,70,4,1,'#5a7a6a');
+    each(bg.mid,cam,.42,300,(m,sx)=>{
+      if(m.kind==='lib'){ctx.fillStyle='#6a4a30';ctx.fillRect(sx,GY-120,260,120);ctx.fillStyle='#a8d0d8';for(let k=0;k<6;k++)ctx.fillRect(sx+14+k*40,GY-100,26,40);
+        ctx.strokeStyle='#4a3220';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(sx-10,GY-50);ctx.lineTo(sx+270,GY-50);for(let x=sx;x<sx+260;x+=10){ctx.moveTo(x,GY-50);ctx.lineTo(x,GY-36)}ctx.stroke();
+        ctx.fillStyle='#5a8a4a';ctx.beginPath();ctx.moveTo(sx-30,GY-116);ctx.lineTo(sx+290,GY-150);ctx.lineTo(sx+290,GY-138);ctx.lineTo(sx-30,GY-104);ctx.fill();
+        plaque(X('北投圖書館','Pak-tâu Tôo-su-kuán'),sx+130,GY-30,'#2a3a20','#e8f8d0',14)}
+      else{ctx.fillStyle='#8ac8b8';ctx.beginPath();ctx.ellipse(sx,GY-14,150,16,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#6a5a48';ctx.fillRect(sx-170,GY-12,340,12);
+        plaque(X('地熱谷','Tē-jia̍t-kok'),sx,GY-70,'#3a3a30','#ffffff',14);
+        for(const f of bg.fx){const ph=((t*.25+f.p)%1),y=GY-20-ph*220,x=sx+(f.x/W-.5)*260+Math.sin(t+f.p)*12;ctx.fillStyle=`rgba(255,255,255,${.45*(1-ph)})`;oval(ctx,x,y,f.s*(.6+ph),f.s*(.5+ph*.6))}}});
+  },
+  maokong(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,252,230,.95)';oval(ctx,780,90,34,34);
+    ridge(cam,.06,250,120,1,3,'#8ab098');ridge(cam,.18,330,90,4,2,'#5a9a4a');
+    ctx.strokeStyle='rgba(60,110,40,.6)';ctx.lineWidth=3;for(let y=300;y<GY;y+=14){ctx.beginPath();for(let x=0;x<=W;x+=24){const yy=y+Math.sin((x+cam*.18)*.012+y)*6;x?ctx.lineTo(x,yy):ctx.moveTo(x,yy)}ctx.stroke()}
+    ctx.strokeStyle='#3a3a3a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,104);ctx.quadraticCurveTo(W/2,150,W,170);ctx.stroke();
+    for(let k=0;k<7;k++){const x=((k*170+t*26-cam*.3)%(W+170)+W+170)%(W+170)-85,u=x/W,y=104+(1-u)*(1-u)*0+2*(1-u)*u*46+u*u*66;ctx.strokeStyle='#3a3a3a';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+14);ctx.stroke();
+      ctx.fillStyle=['#e8432f','#2a7ad8','#f5b630','#2fa58a'][k%4];rr(ctx,x-13,y+14,26,22,5);ctx.fill();ctx.fillStyle='rgba(220,240,255,.8)';ctx.fillRect(x-9,y+18,18,8)}
+    each(bg.mid,cam,.45,140,(m,sx)=>{ctx.fillStyle='#7a5030';ctx.fillRect(sx-50,GY-70,100,70);chineseRoof(sx-50,GY-70,100,'#3a2a1a');lanternAt(sx-30,GY-58,.8,t);lanternAt(sx+30,GY-58,.8,t);plaque(X('貓空纜車','Niau-khang lām-tshia'),sx,GY-40,'#2a3a20','#e8f8d0',13)});
+  },
+  cks(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,252,230,.95)';oval(ctx,180,90,36,36);
+    each(bg.far,cam,.55,60,(m,sx)=>{ctx.fillStyle='#2f6a3f';oval(ctx,sx,GY-50,m.r,m.r*.9)});
+    each(bg.mid,cam,.35,320,(m,sx)=>{
+      if(m.kind==='hall'){ctx.fillStyle='#f4f2ee';for(let k=0;k<3;k++)ctx.fillRect(sx-150+k*30,GY-30-k*26,300-k*60,28);ctx.fillRect(sx-70,GY-170,140,92);ctx.fillStyle='#2a4a9a';ctx.fillRect(sx-22,GY-140,44,62);
+        ctx.fillStyle='#2a4a9a';ctx.beginPath();ctx.moveTo(sx-96,GY-170);ctx.lineTo(sx-60,GY-200);ctx.lineTo(sx+60,GY-200);ctx.lineTo(sx+96,GY-170);ctx.fill();ctx.fillStyle='#f4f2ee';ctx.fillRect(sx-50,GY-224,100,24);
+        ctx.fillStyle='#2a4a9a';ctx.beginPath();ctx.moveTo(sx-74,GY-224);ctx.lineTo(sx-30,GY-262);ctx.lineTo(sx+30,GY-262);ctx.lineTo(sx+74,GY-224);ctx.fill();ctx.fillStyle='#e8c050';oval(ctx,sx,GY-268,8,8)}
+      else{ctx.fillStyle='#f4f2ee';ctx.fillRect(sx-180,GY-110,360,110);ctx.fillStyle='#2a4a8a';for(let k=0;k<5;k++){const ax=sx-144+k*72,aw=k===2?40:28;ctx.beginPath();ctx.moveTo(ax-aw/2,GY);ctx.lineTo(ax-aw/2,GY-60);ctx.arc(ax,GY-60,aw/2,Math.PI,0);ctx.lineTo(ax+aw/2,GY);ctx.fill()}
+        for(let k=0;k<5;k++){const ax=sx-180+k*72;chineseRoof(ax+10,GY-110,52,'#2a4a9a')}}});
+  },
+  pier2(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,252,230,.95)';oval(ctx,820,90,36,36);
+    for(let k=0;k<3;k++){const x=wrapX(k*700+200,cam,.1,2100);ctx.strokeStyle='rgba(200,60,50,.35)';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(x,330);ctx.lineTo(x+20,220);ctx.lineTo(x+40,330);ctx.moveTo(x+20,230);ctx.lineTo(x+120,230);ctx.stroke()}
+    each(bg.mid,cam,.42,280,(m,sx)=>{
+      if(m.kind==='robot'){ctx.fillStyle=m.c;ctx.fillRect(sx-20,GY-90,40,60);ctx.fillRect(sx-14,GY-124,28,30);ctx.fillRect(sx-34,GY-86,12,40);ctx.fillRect(sx+22,GY-86,12,40);ctx.fillRect(sx-16,GY-30,12,30);ctx.fillRect(sx+4,GY-30,12,30);ctx.fillStyle='#fff';ctx.fillRect(sx-8,GY-114,6,6);ctx.fillRect(sx+2,GY-114,6,6)}
+      else{ctx.fillStyle='#8a8a86';ctx.fillRect(sx,GY-120,m.w,120);ctx.fillStyle='#6a6a66';ctx.beginPath();ctx.moveTo(sx-6,GY-120);ctx.lineTo(sx+m.w/2,GY-150);ctx.lineTo(sx+m.w+6,GY-120);ctx.fill();
+        ctx.strokeStyle='rgba(60,60,58,.35)';ctx.lineWidth=1;ctx.beginPath();for(let x=sx+6;x<sx+m.w;x+=8){ctx.moveTo(x,GY-118);ctx.lineTo(x,GY)}ctx.stroke();
+        for(const mu of m.murals){ctx.fillStyle=mu.c;ctx.fillRect(sx+mu.x,GY-120+mu.y,mu.w,mu.h)}
+        ctx.fillStyle='#4a3a30';ctx.fillRect(sx+m.w/2-24,GY-50,48,50);plaque(X('駁二','Pok-jī'),sx+m.w/2,GY-146,'#2a2a2a','#ffd36a',15)}});
+  },
+  sizihwan(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,200,120,.95)';oval(ctx,700,300,56,56);
+    waterBand(306,'#e8806a','#3a3a6a',t,cam);ctx.fillStyle='rgba(255,210,140,.45)';for(let i=0;i<8;i++){const w=70-i*7;ctx.fillRect(700-w/2,314+i*15,w,3)}
+    each(bg.mid,cam,.35,360,(m,sx)=>{ctx.fillStyle='#3a5a3a';ctx.beginPath();ctx.ellipse(sx,GY,300,170,0,Math.PI,0);ctx.fill();
+      const by=GY-170;ctx.fillStyle='#b84a32';ctx.fillRect(sx-80,by-60,160,64);ctx.fillStyle='#8a3a28';ctx.beginPath();ctx.moveTo(sx-90,by-60);ctx.lineTo(sx,by-84);ctx.lineTo(sx+90,by-60);ctx.fill();
+      ctx.fillStyle='#f4e8d8';for(let k=0;k<6;k++){const ax=sx-64+k*26;ctx.beginPath();ctx.moveTo(ax-8,by+4);ctx.lineTo(ax-8,by-26);ctx.arc(ax,by-26,8,Math.PI,0);ctx.lineTo(ax+8,by+4);ctx.fill()}
+      plaque(X('打狗英國領事館','Tánn-káu Ing-kok Líng-sū-kuán'),sx,GY-120,'#3a1a10','#ffd890',13)});
+  },
+  lotus(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,252,230,.95)';oval(ctx,200,90,36,36);
+    ridge(cam,.06,320,70,2,4,'#7a9a7a');waterBand(330,'#4a9ab8','#2a6a8a',t,cam);
+    for(const f of bg.fx){const x=((f.x-cam*.4)%W+W)%W;ctx.fillStyle='#4a9a4a';oval(ctx,x,f.y,f.s,f.s*.45)}
+    each(bg.mid,cam,.4,260,(m,sx)=>{
+      ctx.strokeStyle='#d8352b';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(sx-260,GY-10);ctx.lineTo(sx-200,GY-26);ctx.lineTo(sx-150,GY-10);ctx.lineTo(sx-100,GY-26);ctx.lineTo(sx-60,GY-14);ctx.stroke();
+      for(const [dx,head] of [[-40,'#3a9a4a'],[60,'#f0a030']]){const px=sx+dx;
+        for(let k=0;k<7;k++){const w=46-k*4,y=GY-50-k*30;ctx.fillStyle='#f0d070';ctx.fillRect(px-w/2+4,y-22,w-8,22);ctx.fillStyle='#c8352b';ctx.beginPath();ctx.moveTo(px-w/2-6,y-20);ctx.lineTo(px+w/2+6,y-20);ctx.lineTo(px+w/2-2,y-30);ctx.lineTo(px-w/2+2,y-30);ctx.fill()}
+        ctx.fillStyle='#c8352b';ctx.fillRect(px-2,GY-290,4,24);
+        ctx.fillStyle=head;oval(ctx,px,GY-28,30,24);ctx.fillStyle='#fff';oval(ctx,px-10,GY-36,5,5);oval(ctx,px+10,GY-36,5,5);ctx.fillStyle='#111';oval(ctx,px-10,GY-36,2,2);oval(ctx,px+10,GY-36,2,2);ctx.fillStyle='#2a1a10';oval(ctx,px,GY-20,12,8)}
+      plaque(X('龍虎塔','Liông-hóo-thah'),sx+10,GY-330,'#c8352b','#ffe27a',15)});
+  },
+  formosa(g,cam,t,bg){
+    ctx.fillStyle='#1a1420';ctx.fillRect(0,0,W,GY);
+    each(bg.mid,cam,.15,700,(m,sx)=>{ctx.save();ctx.beginPath();ctx.ellipse(sx,30,430,230,0,0,Math.PI*2);ctx.clip();
+      const cs=['#d8352b','#2a5ab8','#f0b830','#2a9a5a','#8a3ab8','#e87a2a','#3ab8d8','#f06aa0'];
+      for(let i=0;i<32;i++){const a0=i/32*Math.PI*2+t*.02,a1=a0+Math.PI*2/32;ctx.fillStyle=cs[i%8];ctx.globalAlpha=.75+.25*Math.sin(t*1.5+i);ctx.beginPath();ctx.moveTo(sx,30);ctx.arc(sx,30,460,a0,a1);ctx.fill()}
+      ctx.globalAlpha=1;ctx.strokeStyle='rgba(10,6,14,.8)';ctx.lineWidth=3;for(let r_=60;r_<460;r_+=70){ctx.beginPath();ctx.arc(sx,30,r_,0,Math.PI*2);ctx.stroke()}
+      ctx.restore();for(const dx of [-300,-100,100,300]){const cx=sx+dx;ctx.fillStyle='#2a2230';ctx.fillRect(cx-14,180,28,GY-180);ctx.fillStyle=cs[(dx/100+4)%8];ctx.globalAlpha=.5;ctx.fillRect(cx-14,200,28,120);ctx.globalAlpha=1}
+      plaque(X('美麗島站','Bí-lē-tó-tsām'),sx,GY-80,'#f0b830','#2a1a00',15)});
+    ctx.fillStyle='rgba(255,255,255,.04)';ctx.fillRect(0,GY-40,W,40);
+  },
+  fgs(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,236,190,.9)';oval(ctx,820,140,46,46);
+    ridge(cam,.06,330,60,3,5,'#7a9a7a');
+    each(bg.far,cam,.35,80,(m,sx)=>{ctx.fillStyle='#9a8a7a';for(let k=0;k<7;k++){const w=40-k*4;ctx.fillRect(sx-w/2,GY-40-k*20,w,18)}ctx.fillRect(sx-2,GY-190,4,14)});
+    each(bg.mid,cam,.22,300,(m,sx)=>{ctx.fillStyle='rgba(255,220,120,.25)';oval(ctx,sx,GY-250,120,120);
+      ctx.fillStyle='#e8a0a0';oval(ctx,sx,GY-60,120,26);ctx.fillStyle='#d8a838';oval(ctx,sx,GY-130,82,78);oval(ctx,sx,GY-84,100,30);
+      ctx.fillStyle='#c8962a';oval(ctx,sx,GY-96,40,16);ctx.fillStyle='#e0b444';oval(ctx,sx,GY-238,40,46);oval(ctx,sx,GY-286,16,14);oval(ctx,sx-40,GY-232,8,20);oval(ctx,sx+40,GY-232,8,20);
+      ctx.strokeStyle='rgba(120,80,20,.5)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(sx-14,GY-242,6,.2,Math.PI-.2);ctx.moveTo(sx+20,GY-242);ctx.arc(sx+14,GY-242,6,.2,Math.PI-.2);ctx.stroke();
+      plaque(X('佛光山','Hu̍t-kong-san'),sx,GY-40,'#7a4a10','#fff0c0',15)});
+  },
+  weiwuying(g,cam,t,bg){
+    ctx.fillStyle='rgba(255,252,230,.95)';oval(ctx,820,90,36,36);
+    ctx.fillStyle='#f0f2f4';ctx.beginPath();for(let x=0;x<=W;x+=12){const y=GY-150+Math.sin((x+cam*.35)*.008)*34;x?ctx.lineTo(x,y):ctx.moveTo(x,y)}for(let x=W;x>=0;x-=12){const y=GY-118+Math.sin((x+cam*.35)*.008+.4)*30;ctx.lineTo(x,y)}ctx.fill();
+    ctx.fillStyle='#c8ccd2';for(let x=0;x<=W;x+=12){const y=GY-118+Math.sin((x+cam*.35)*.008+.4)*30;ctx.fillRect(x,y,12,5)}
+    ctx.fillStyle='#d8dce0';for(let k=0;k<6;k++){const x=wrapX(k*240,cam,.35,1440);ctx.fillRect(x,GY-120,6,120)}
+    each(bg.mid,cam,.55,140,(m,sx)=>{ctx.fillStyle='#4a3a2a';ctx.fillRect(sx-8,GY-110,16,110);ctx.strokeStyle='rgba(74,58,42,.7)';ctx.lineWidth=1.5;ctx.beginPath();for(let k=-3;k<=3;k++){ctx.moveTo(sx+k*12,GY-130);ctx.lineTo(sx+k*14,GY-30)}ctx.stroke();ctx.fillStyle='#3f7a3a';oval(ctx,sx,GY-150,m.r*1.5,m.r*.7);ctx.fillStyle='#4a8a42';oval(ctx,sx-m.r*.6,GY-166,m.r*.8,m.r*.5)});
+    {const x=wrapX(500,cam,.35,1800);plaque(X('衛武營','Uē-bú-iânn'),x,GY-60,'#2a3a4a','#ffffff',15)}
+  },
+  harbor(g,cam,t,bg){
+    starsBG(g,cam,t);
+    each(bg.far,cam,.15,80,(b,sx)=>{ctx.fillStyle='#141c3a';ctx.fillRect(sx,330-b.h,b.w,b.h);ctx.fillStyle='rgba(255,214,140,.5)';for(let y=336-b.h;y<326;y+=10)if((y+b.x)%3<1)ctx.fillRect(sx+4,y,b.w-8,3)});
+    waterBand(330,'#0e1a3a','#060c22',t,cam);ctx.fillStyle='rgba(255,180,90,.3)';for(let i=0;i<16;i++){const x=((i*71-cam*.3)%W+W)%W;ctx.fillRect(x,340+(i%5)*20,26,2)}
+    each(bg.mid,cam,.35,260,(m,sx)=>{
+      if(m.kind==='tower'){ctx.fillStyle='#1e2a50';ctx.fillRect(sx-50,GY-330,36,300);ctx.fillRect(sx+14,GY-330,36,300);ctx.fillRect(sx-50,GY-360,100,40);ctx.fillRect(sx-30,GY-430,60,80);ctx.fillRect(sx-14,GY-470,28,50);ctx.fillRect(sx-2,GY-510,4,44);
+        ctx.fillStyle='rgba(255,214,140,.55)';for(let y=GY-320;y<GY-40;y+=14){ctx.fillRect(sx-44,y,24,3);ctx.fillRect(sx+20,y,24,3)}for(let y=GY-420;y<GY-360;y+=12)ctx.fillRect(sx-24,y,48,3)}
+      else{ctx.strokeStyle='#c8352b';ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(sx-40,GY-30);ctx.lineTo(sx-30,GY-170);ctx.moveTo(sx+40,GY-30);ctx.lineTo(sx+30,GY-170);ctx.moveTo(sx-60,GY-170);ctx.lineTo(sx+110,GY-170);ctx.stroke();ctx.strokeStyle='#f4f0ea';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(sx-30,GY-170);ctx.lineTo(sx+10,GY-210);ctx.lineTo(sx+110,GY-170);ctx.stroke();
+        ctx.fillStyle='#ffd36a';oval(ctx,sx+10,GY-212,3,3);
+        const cs=['#d8352b','#2a5ab8','#f0b830','#2a9a5a'];ctx.fillStyle='#2a2a3a';ctx.fillRect(sx-80,GY-40,190,22);for(let k=0;k<8;k++)for(let j=0;j<2;j++){ctx.fillStyle=cs[(k+j)%4];ctx.fillRect(sx-74+k*22,GY-62-j*12,20,11)}}});
+    {const x=wrapX(300,cam,.35,1800);plaque(X('高雄港','Ko-hiông-káng'),x,GY-36,'#1e2a50','#ffd890',15)}
+  },
+};
 function chineseRoof(x,y,w,col){
   ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(x-22,y);ctx.quadraticCurveTo(x-30,y-8,x-36,y-18);ctx.lineTo(x+10,y-30);ctx.lineTo(x+w-10,y-30);ctx.lineTo(x+w+36,y-18);ctx.quadraticCurveTo(x+w+30,y-8,x+w+22,y);ctx.closePath();ctx.fill();
   ctx.strokeStyle=col;ctx.lineWidth=5;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x-2,y-44);ctx.quadraticCurveTo(x+12,y-30,x+w/2,y-32);ctx.quadraticCurveTo(x+w-12,y-30,x+w+2,y-44);ctx.stroke();
@@ -720,14 +1044,18 @@ function drawLou(x,base,w,label){
   chineseRoof(ux-4,base-198,uw+8,'#3e4a48');
   ctx.font=`700 14px ${FD}`;const lw=ctx.measureText(label).width+16;ctx.fillStyle='#1e2a28';rr(ctx,x+w/2-lw/2,base-190,lw,22,3);ctx.fill();txt(label,x+w/2,base-174,`700 14px ${FD}`,'#f0c050','center');
 }
-function draw101(x,base){
-  ctx.fillStyle='#1b2a5c';
+function draw101(x,base,col='#1b2a5c',lc='rgba(120,240,220,.55)',sc=1){
+  ctx.save();ctx.translate(x,base);ctx.scale(sc,sc);x=0;base=0;
+  ctx.fillStyle=col;
   ctx.fillRect(x-22,base-60,44,60);
   for(let k=0;k<8;k++){const y=base-60-(k+1)*26;ctx.beginPath();ctx.moveTo(x-17,y+26);ctx.lineTo(x-22,y);ctx.lineTo(x+22,y);ctx.lineTo(x+17,y+26);ctx.fill()}
   const top=base-60-8*26;ctx.fillRect(x-10,top-24,20,24);ctx.fillRect(x-2,top-70,4,46);
-  ctx.fillStyle='rgba(120,240,220,.55)';for(let k=0;k<8;k++)ctx.fillRect(x-14,base-60-(k+1)*26+4,28,2);
+  ctx.fillStyle=lc;for(let k=0;k<8;k++)ctx.fillRect(x-14,base-60-(k+1)*26+4,28,2);
+  ctx.restore();
 }
 function drawFX(g){
+  if(g.theme.sakura){ctx.fillStyle='rgba(248,180,200,.85)';for(let i=0;i<40;i++){const x=((i*97+g.t*30-g.camX*.6)%W+W)%W,y=((i*53+g.t*(40+i%5*8))%H);oval(ctx,x+Math.sin(g.t*2+i)*8,y,3,2,i)}}
+  if(g.def.theme==='snow'){ctx.fillStyle='rgba(255,255,255,.9)';for(const f of g.bg.fx){const y=(f.y+g.t*f.v)%H,x=((f.x+Math.sin(g.t+f.p)*20-g.camX*.3)%W+W)%W;oval(ctx,x,y,f.s,f.s)}}
   if(g.def.theme==='rain'){ctx.strokeStyle='rgba(200,215,240,.35)';ctx.lineWidth=1.2;ctx.beginPath();for(const d of g.bg.fx){const y=(d.y+g.t*d.v)%H,x=((d.x-y*.25-g.camX*.6)%W+W)%W;ctx.moveTo(x,y);ctx.lineTo(x-4,y+14)}ctx.stroke()}
 }
 
@@ -867,7 +1195,7 @@ function bump(s){
   s.bump=.15;
   if(s.kind==='teach'&&!s.used){
     s.used=true;SFX.card();burst(s.x+20,s.y,'#ffd36a',18);
-    float(s.x+20,s.y-14,R(s.key),'#ffd36a',30,FR);
+    float(s.x+20,s.y-14,lab(s.key),'#ffd36a',30,FR);
     SAVE.book[s.key]=true;persist();
     g.pending={key:s.key,t:.35};
   }else if(s.kind==='brick'){
@@ -876,6 +1204,7 @@ function bump(s){
   }else if(s.kind==='answer'){
     const q=s.gate;
     if(q.solved||s.state){SFX.bump();return}
+    if(q.boss){bossAnswer(s,q);return}
     if(s.key===q.key){
       s.state='right';q.solved=true;q.barrier.open=0;
       q.blocks.forEach(b=>{if(b!==s&&!b.state)b.state='dim'});
@@ -889,13 +1218,66 @@ function bump(s){
       burst(s.x+20,s.y,'#9a8fb0',12,180);
       float(s.x+20,s.y-20,X('毋著 m̄-tio̍h','M̄-tio̍h'),'#ff8a7a',24,FD);
       const L=LETTERS[q.key];
-      toast(isLo()?R(L.zy==='華語無'?'Thê-sī: Tsit ê im Huâ-gí bô, âu-lâng ài tín-tāng.':'Koh siūnn khuànn-māi!'):L.zy==='華語無'?`提示：這个音華語無，是台語特有的濁音。`:`提示：這个音有點像「${L.zy}」。`,4);
+      toast(L.type==='聲調'?X(`提示：這个字是${L.tip.split('：')[1].split('，')[0]}。`,'Koh siūnn khuànn-māi!'):isLo()?R(L.zy==='華語無'?'Thê-sī: Tsit ê im Huâ-gí bô, âu-lâng ài tín-tāng.':'Koh siūnn khuànn-māi!'):L.zy==='華語無'?`提示：這个音華語無，是台語特有的濁音。`:`提示：這个音有點像「${L.zy}」。`,4);
       const mx=Math.min(p.x+190,q.barrier.x-60);
       g.enemies.push(mkMosq(mx,GY-130,50));burst(mx+14,GY-130,'#cfd6e6',10,120);
     }
   }else SFX.bump();
 }
 
+function bossAnswer(s,q){
+  const g=G,b=g.boss;
+  if(s.key===q.key){
+    s.state='right';SFX.right();burst(s.x+20,s.y,'#ffd36a',26,320);gain(2);
+    b.hp--;b.hurtT=.7;burst(b.x+b.w/2,b.y+b.h/2,'#ffe27a',30,360);float(b.x+b.w/2,b.y-20,'-1','#ffe27a',36,FR);
+    if(b.hp<=0){
+      b.alive=false;b.dead=0;q.solved=true;q.barrier.open=0;setTimeout(SFX.open,250);SFX.win();gain(5);
+      q.blocks.forEach(x=>{if(!x.state)x.state='dim'});
+      float(b.x+b.w/2,b.y-60,X('打倒魔王！','Phah-tó môo-ông!'),'#ffd36a',40,FD);
+      toast(X(`${b.name}拍倒矣！`,`${b.tl} phah tó--ah!`),3.5);
+    }else{toast(X(`答對！${b.name}賰 ${b.hp} 粒血`,`Ìn tio̍h! ${b.tl} tshun ${b.hp} lia̍p hueh`),2.2);setTimeout(()=>{if(G===g&&!q.solved)nextBossQ(q)},700)}
+  }else{
+    s.state='wrong';q.wrong++;g.wrong++;SFX.wrong();burst(s.x+20,s.y,'#9a8fb0',12,180);
+    if(b.hp<b.max){b.hp++;float(b.x+b.w/2,b.y-20,'+1','#ff8a7a',32,FR)}
+    toast(X('答毋著，魔王補血矣！','Ìn m̄-tio̍h, môo-ông póo-hueh--ah!'),2.5);
+  }
+}
+function nextBossQ(q){
+  let key;do{key=ALL[Math.floor(Math.random()*ALL.length)]}while(key===q.key);
+  q.key=key;q.word=pickWord(key,true);q.opts=pickOpts(key,Math.random);
+  q.blocks.forEach((bl,j)=>{bl.state=null;bl.bump=.15;if(j<q.opts.length){bl.key=q.opts[j];bl.dead=false}else bl.dead=true});
+}
+function updateBoss(b,dt){
+  const g=G,p=g.p;b.t+=dt;if(b.hurtT>0)b.hurtT-=dt;
+  if(p.x<b.gate.x-260)return;
+  if(!g.bossIntro){g.bossIntro=true;SFX.wrong();toast(X(`魔王「${b.name}」出現！答對 5 題才拍會倒伊`,`Môo-ông ${b.tl} tshut-hiān! Ìn tio̍h 5 tê tsiah phah ē tó i`),4)}
+  const sp=60+(b.max-b.hp)*24;b.vx=(b.vx<0?-1:1)*sp;
+  b.x+=b.vx*dt;if(b.x<b.minX){b.x=b.minX;b.vx=sp}if(b.x+b.w>b.maxX){b.x=b.maxX-b.w;b.vx=-sp}
+  if(b.fly)b.y=GY-270+Math.sin(b.t*1.7)*45;
+  if(overlap(p,b)&&b.hurtT<=0){
+    if(p.vy>60&&p.y+p.h-b.y<26){p.vy=-640;p.jumping=false;SFX.bump();float(b.x+b.w/2,b.y-10,X('踏無效！','Ta̍h bô-hāu!'),'#fff6e0',20,FD)}
+    else hurt();
+  }
+}
+function drawBoss(b,t){
+  if(b.hurtT>0&&Math.floor(b.hurtT*16)%2)ctx.globalAlpha=.35;
+  const dir=b.vx>0?1:-1;
+  ctx.save();
+  if(b.fly){ctx.translate(b.x+b.w/2,b.y+b.h/2);ctx.scale(3,3);drawMosq(ctx,-14,-10,dir,t,false)}
+  else{ctx.translate(b.x+b.w/2-15*dir,b.y+b.h);ctx.scale(3,3);drawRoach(ctx,-16,-18,dir,t,false)}
+  ctx.restore();
+  const cx=b.fly?b.x+b.w/2+dir*24:b.x+b.w/2-15*dir+dir*39,cy=b.fly?b.y+b.h/2-14:b.y+b.h-38;
+  ctx.fillStyle='#f5c030';ctx.beginPath();ctx.moveTo(cx-15,cy);ctx.lineTo(cx-15,cy-15);ctx.lineTo(cx-7,cy-7);ctx.lineTo(cx,cy-19);ctx.lineTo(cx+7,cy-7);ctx.lineTo(cx+15,cy-15);ctx.lineTo(cx+15,cy);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#a8730e';ctx.lineWidth=1.5;ctx.stroke();ctx.fillStyle='#d93a2b';oval(ctx,cx,cy-5,2.6,2.6);
+  ctx.globalAlpha=1;
+}
+function drawBossBar(g){
+  const b=g.boss;if(!b||!b.alive||g.p.x<b.gate.x-560)return;
+  const w=380,x=(W-w)/2,y=162;
+  ctx.fillStyle='rgba(12,6,24,.78)';rr(ctx,x,y,w,34,17);ctx.fill();
+  txt('♛ '+X(b.name,R(b.tl)),x+16,y+18,`700 17px ${FD}`,'#ffd36a','left','middle');
+  for(let i=0;i<b.max;i++){ctx.fillStyle=i<b.hp?'#ff5a6a':'rgba(255,255,255,.18)';rr(ctx,x+w-20-(b.max-i)*34,y+9,28,16,5);ctx.fill()}
+}
 const PEARLS_PER_HEART=10;
 function gain(n){
   const g=G;g.got+=n;SAVE.pearls+=n;g.heal=Math.min(PEARLS_PER_HEART,(g.heal||0)+n);
@@ -996,6 +1378,7 @@ function update(dt){
   // enemies
   for(const e of g.enemies){
     if(!e.alive){e.dead+=dt;continue}
+    if(e.type==='boss'){updateBoss(e,dt);if(mode!=='play')return;continue}
     if(e.x<g.camX-260||e.x>g.camX+W+200)continue;
     e.t+=dt;
     if(e.type==='roach'){
@@ -1045,6 +1428,7 @@ let scale=1;
 function render(){
   const g=G;ctx.setTransform(scale,0,0,scale,0,0);
   drawBG(g);
+  ctx.fillStyle='#0b0814';ctx.fillRect(0,GY+10,W,H-GY);
   ctx.save();ctx.translate(-Math.round(g.camX),0);
   const vL=g.camX-60,vR=g.camX+W+60;
   for(const s of g.signs){if(s.x>vR||s.x+170<vL)continue;ctx.fillStyle='#5a3a20';ctx.fillRect(s.x+80,GY-60,8,60);ctx.fillStyle='#a8743c';rr(ctx,s.x,GY-122,168,64,8);ctx.fill();ctx.strokeStyle='#5a3a20';ctx.lineWidth=3;ctx.stroke();s.lines.forEach((l,i)=>txt(X(l[0],l[1]),s.x+84,GY-96+i*24,`700 17px ${FD}`,'#2a1608','center'))}
@@ -1057,7 +1441,7 @@ function render(){
   }
   for(const e of g.enemies){if(e.x<vL||e.x>vR)continue;
     if(!e.alive){if(e.dead>.5)continue;ctx.globalAlpha=1-e.dead*2;}
-    if(e.type==='roach')drawRoach(ctx,e.x,e.y,e.vx>0?1:-1,g.t,!e.alive);else drawMosq(ctx,e.x,e.y+(e.alive?0:e.dead*120),e.dir,g.t,!e.alive);
+    if(e.type==='boss')drawBoss(e,g.t);else if(e.type==='roach')drawRoach(ctx,e.x,e.y,e.vx>0?1:-1,g.t,!e.alive);else drawMosq(ctx,e.x,e.y+(e.alive?0:e.dead*120),e.dir,g.t,!e.alive);
     ctx.globalAlpha=1}
   if(!g.demo){const p=g.p;if(!(p.inv>0&&Math.floor(p.inv*14)%2))hero().draw(ctx,p.x,p.y,p.face,g.t,p.run,(g.t%3.2)<.12)}
   for(const q of g.parts){const a=clamp(q.life/q.max,0,1);ctx.globalAlpha=a;
@@ -1068,7 +1452,7 @@ function render(){
     ctx.globalAlpha=1}
   ctx.restore();
   drawFX(g);
-  if(!g.demo){drawHUD(g);const q=activeGate(g);if(q&&mode==='play')drawBanner(q,g);if(g.toast)drawToast(g.toast);if(g.auto)drawDemo(g);
+  if(!g.demo){drawHUD(g);const q=activeGate(g);if(q&&mode==='play')drawBanner(q,g);drawBossBar(g);if(g.toast)drawToast(g.toast);if(g.auto)drawDemo(g);
     if(mode==='win'){ctx.globalAlpha=Math.min(1,g.winT*2);txt(X('過關！','Kuè-kuan!'),W/2,H/2-20,`700 72px ${FD}`,'#ffd36a','center','middle');if(!isLo())txt(R('Kuè-kuan!'),W/2,H/2+40,`700 30px ${FR}`,'#fff6e0','center','middle');ctx.globalAlpha=1}}
 }
 function activeGate(g){const p=g.p;return g.gates.find(q=>!q.solved&&p.x>q.x-640&&p.x<q.barrier.x+40)}
@@ -1088,7 +1472,7 @@ function drawSolid(s,g){
     ctx.beginPath();ctx.moveTo(s.x,by+T/2);ctx.lineTo(s.x+T,by+T/2);ctx.moveTo(s.x+T/2,by);ctx.lineTo(s.x+T/2,by+T/2);ctx.moveTo(s.x+T/4,by+T/2);ctx.lineTo(s.x+T/4,by+T);ctx.moveTo(s.x+3*T/4,by+T/2);ctx.lineTo(s.x+3*T/4,by+T);ctx.stroke();
     ctx.fillStyle='rgba(255,255,255,.12)';ctx.fillRect(s.x+2,by+2,T-4,3);
   }else if(s.kind==='teach'){
-    if(s.used){ctx.fillStyle='#7a5a32';ctx.fillRect(s.x,by,T,T);ctx.strokeStyle='#4a3418';ctx.lineWidth=2;ctx.strokeRect(s.x+1,by+1,T-2,T-2);txt(R(s.key),s.x+20,by+21,`700 18px ${FR}`,'#d9b97a','center','middle');return}
+    if(s.used){ctx.fillStyle='#7a5a32';ctx.fillRect(s.x,by,T,T);ctx.strokeStyle='#4a3418';ctx.lineWidth=2;ctx.strokeRect(s.x+1,by+1,T-2,T-2);txt(lab(s.key),s.x+20,by+21,`700 18px ${FR}`,'#d9b97a','center','middle');return}
     const gl=.5+.5*Math.sin(g.t*4);
     ctx.fillStyle=`rgba(255,210,90,${.2+gl*.25})`;ctx.fillRect(s.x-4,by-4,T+8,T+8);
     const gr=ctx.createLinearGradient(0,by,0,by+T);gr.addColorStop(0,'#ffd95e');gr.addColorStop(1,'#e8961c');ctx.fillStyle=gr;ctx.fillRect(s.x,by,T,T);
@@ -1103,7 +1487,7 @@ function drawSolid(s,g){
     else if(st==='dim'){bgc='#d8cdb8';fg='#8a7d6a';bd='#a89a80'}
     if(!st){const gl=.5+.5*Math.sin(g.t*5+s.x);ctx.fillStyle=`rgba(255,240,200,${.15+gl*.2})`;ctx.fillRect(s.x-3,by-3,T+6,T+6)}
     ctx.fillStyle=bgc;rr(ctx,s.x,by,T,T,6);ctx.fill();ctx.strokeStyle=bd;ctx.lineWidth=3;ctx.stroke();
-    const k=R(s.key),n=k.normalize('NFD').replace(/[̀-ͯ]/g,'').length;txt(k,s.x+20,by+21,`700 ${n>2?17:n>1?21:24}px ${FR}`,fg,'center','middle');
+    const k=lab(s.key),n=k.normalize('NFD').replace(/[̀-ͯ]/g,'').length;txt(k,s.x+20,by+21,`700 ${n>2?17:n>1?21:24}px ${FR}`,fg,'center','middle');
     if(st==='wrong'){ctx.strokeStyle='#e8432f';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(s.x+8,by+8);ctx.lineTo(s.x+T-8,by+T-8);ctx.moveTo(s.x+T-8,by+8);ctx.lineTo(s.x+8,by+T-8);ctx.stroke()}
   }else if(s.kind==='barrier'){
     const off=s.open>=0?Math.pow(s.open/1.2,2)*560:0;
@@ -1131,14 +1515,14 @@ function drawHUD(g){
   ctx.font=`700 22px ${FD}`;const nw=ctx.measureText(hd).width;
   txt(R(g.def.tl),236+nw,35,`700 15px ${FR}`,'#c9bde0','left','middle');
   const act=activeGate(g);let x=W-22;
-  for(let i=g.gates.length-1;i>=0;i--){const q=g.gates[i];ctx.font=`700 16px ${FR}`;const kl=R(q.key),w=Math.max(30,ctx.measureText(kl).width+16);x-=w;
+  for(let i=g.gates.length-1;i>=0;i--){const q=g.gates[i];ctx.font=`700 16px ${FR}`;const kl=q.boss?'♛':lab(q.key),w=Math.max(30,ctx.measureText(kl).width+16);x-=w;
     const on=q===act;ctx.fillStyle=q.solved?'#f5b630':on?'rgba(245,182,48,.25)':'rgba(255,255,255,.08)';rr(ctx,x,21,w,26,13);ctx.fill();
     if(on){ctx.strokeStyle='#f5b630';ctx.lineWidth=2;ctx.stroke()}
-    txt(q.solved||!g.def.challenge?kl:'?',x+w/2,35,`700 16px ${FR}`,q.solved?'#3a1d00':'#fff6e0','center','middle');x-=6}
+    txt(q.solved||!g.def.challenge||q.boss?kl:'?',x+w/2,35,`700 16px ${FR}`,q.solved?'#3a1d00':'#fff6e0','center','middle');x-=6}
 }
 function drawBanner(q,g){
-  const w=q.word,kind=isVowel(q.key)?'母音':'子音',bh=88,by=66,lo=isLo();
-  const parts=blanked(R(w.t)).split('_');
+  const w=q.word,LT=LETTERS[q.key].type,bh=88,by=66,lo=isLo();
+  const parts=LT==='聲調'?[stripTone(plain(R(w.t))),'']:blanked(R(w.t)).split('_');
   ctx.font=`700 38px ${FR}`;const romW=ctx.measureText(parts[0]).width+ctx.measureText(parts[1]).width+58;
   const bw=Math.max(560,(lo?100:170)+romW+230),bx=(W-bw)/2;
   ctx.fillStyle='rgba(255,246,226,.97)';rr(ctx,bx,by,bw,bh,14);ctx.fill();ctx.strokeStyle='#f5b630';ctx.lineWidth=3;ctx.stroke();
@@ -1151,7 +1535,7 @@ function drawBanner(q,g){
   ctx.setLineDash([6,4]);ctx.strokeStyle='#d93a2b';ctx.lineWidth=2.5;ctx.stroke();ctx.setLineDash([]);
   txt('?',rx+25,cy,`700 32px ${FR}`,'#d93a2b','center','middle');rx+=54;
   txt(parts[1],rx,cy,`700 38px ${FR}`,'#2a1636','left','middle');
-  txt(X(`這个字的${kind}是？`,`Tsit jī ê ${kind==='母音'?'bó-im':'tsú-im'} sī?`),bx+bw-20,by+36,`700 21px ${FD}`,'#2a1636','right','middle');
+  txt(X(...PROMPT[LT]),bx+bw-20,by+36,`700 21px ${FD}`,'#2a1636','right','middle');
   txt(X('跳起來，撞正確的字母磚','Thiàu--khí-lâi, lòng tio̍h-ê jī-bó tsng'),bx+bw-20,by+64,`500 14px ${FB}`,'#8a6a4a','right','middle');
 }
 function drawToast(t){
@@ -1211,25 +1595,25 @@ function showMap(){
         <span class="no">${kuanName(i)}</span>
         ${isLo()?`<h3 class="roman">${R(L.tl)}</h3>`:`<h3>${L.name}</h3><span class="roman">${R(L.tl)}</span>`}
         <span class="sub">${X(L.sub,L.subLo)}</span>
-        <div class="chips">${(L.letters||['?','?','?']).map(k=>`<span class="chip">${k==='?'?k:esc(R(k))}</span>`).join('')}</div>
-        ${unlocked(i)?starsHTML(SAVE.stars[i]||0):`<span class="sub">先過第${NUM[i-1]}關</span>`}
+        <div class="chips">${(L.letters||['?','?','?']).map(k=>`<span class="chip">${k==='?'?k:esc(lab(k))}</span>`).join('')}</div>
+        ${unlocked(i)?starsHTML(SAVE.stars[sk(i)]||0):`<span class="sub">先過第${NUM[i-1]}關</span>`}
       </button>`).join('')}</div>
   </div>`);
   sheet.querySelectorAll('.lv').forEach(b=>b.onclick=()=>startLevel(+b.dataset.i));
   const first=sheet.querySelector('.lv:not([disabled])');
-  const next=[...sheet.querySelectorAll('.lv:not([disabled])')].find(b=>!SAVE.stars[b.dataset.i])||first;next.focus({preventScroll:true});next.setAttribute('data-default','');
+  const next=[...sheet.querySelectorAll('.lv:not([disabled])')].find(b=>!SAVE.stars[sk(+b.dataset.i)])||first;next.focus({preventScroll:true});next.setAttribute('data-default','');
   $('#book').onclick=()=>showBook(showMap);$('#demo').onclick=startDemo;$('#home').onclick=showTitle;bindRom(showMap);bindScript(showMap);
   sheet.querySelectorAll('[data-world]').forEach(b=>b.onclick=()=>{if(SAVE.world===b.dataset.world)return;SAVE.world=b.dataset.world;persist();showMap()});
 }
 function startLevel(i){
   ensureAudio();G=buildLevel(i);mode='play';hideOv();
-  {const n=LEVELS[i].n,w=LEVELS[i].world==='tainan'?2:0;bgmStart([0,-2,-5,2,4,-4,-1,-3][n]+w,[132,112,100,120,140,108,126,150][n]+w*4)}
+  {const n=LEVELS[i].n,w=WORLDS[LEVELS[i].world].key;bgmStart([0,-2,-5,2,4,-4,-1,3,1,-2,-3][n]+w,[132,112,100,120,140,108,126,118,124,110,156][n]+w*4)}
   toast(LEVELS[i].challenge?X('總複習！這關無字磚，全靠你記牢。','Tsóng ho̍k-si̍p! Tsit kuan bô jī-tsng, tsuân khò lí kì-tiâu.'):X('撞金色「字」磚，學新字母！','Lòng kim-sik jī-tsng, o̍h sin jī-bó!'),3);
 }
 function cardHTML(key){
   const L=LETTERS[key];
   return `<div class="card">
-    <div class="ctile"><span class="kind">${typeName(L.type)}</span><b class="big">${esc(R(key))}</b><span class="zy">${L.zy==='華語無'?X('華語無這个音','Huâ-gí bô'):X('有點像 ','Tsù-im ')+zyOf(key)}</span></div>
+    <div class="ctile"><span class="kind">${typeName(L.type)}</span><b class="big">${esc(lab(key))}</b><span class="zy">${L.zy==='華語無'?X('華語無這个音','Huâ-gí bô'):L.type==='聲調'?X('調值 ','Tiāu-tī ')+L.zy:X('有點像 ','Tsù-im ')+zyOf(key)}</span></div>
     <div class="stack" style="min-width:0">
       <p class="tip">${esc(tipOf(key))}</p>
       <ul class="words">${L.words.map(w=>`${isLo()?`<li class="lo"><span class="emo">${w.e}</span><span class="tl">${marked(R(w.t))}</span></li>`:`<li><span class="emo">${w.e}</span><span class="han">${w.h}</span><span class="tl">${marked(R(w.t))}</span><span class="mean">${esc(w.m)}</span></li>`}`).join('')}</ul>
@@ -1257,7 +1641,7 @@ function scriptSwitch(){
 function bindScript(redraw){sheet.querySelectorAll('[data-script]').forEach(b=>b.onclick=()=>{if(SAVE.script===b.dataset.script)return;SAVE.script=b.dataset.script;persist();applyScript();redraw()})}
 function bindRom(redraw){sheet.querySelectorAll('[data-rom]').forEach(b=>b.onclick=()=>{if(SAVE.rom===b.dataset.rom)return;SAVE.rom=b.dataset.rom;persist();applyScript();redraw()})}
 function showBook(back){
-  const tile=k=>`<button class="tile ${SAVE.book[k]?'got':''}" data-k="${k}"><b>${esc(R(k))}</b><span>${SAVE.book[k]?'✓':LETTERS[k].zy==='華語無'?X('濁音','b g j'):zyOf(k)}</span></button>`;
+  const tile=k=>`<button class="tile ${SAVE.book[k]?'got':''}" data-k="${k}"><b>${esc(lab(k))}</b><span>${SAVE.book[k]?'✓':LETTERS[k].zy==='華語無'?X('濁音','b g j'):zyOf(k)}</span></button>`;
   const n=Object.keys(SAVE.book).filter(k=>LETTERS[k]).length;
   const diff=[['ts','ch'],['tsh','chh'],['oo','o͘'],['ua','oa'],['ue','oe'],['nn','ⁿ'],['ing','eng'],['ik','ek']];
   showOv(`<div class="stack">
@@ -1265,6 +1649,9 @@ function showBook(back){
     <h3 style="font-size:20px">${X('子音（聲母）','Tsú-im')} ${INITIALS.length} ${X('个','ê')}</h3><div class="bookgrid">${INITIALS.map(tile).join('')}</div>
     <h3 style="font-size:20px">${X('母音（韻母）','Bó-im')} ${VOWELS.length} ${X('个','ê')}</h3><div class="bookgrid">${VOWELS.map(tile).join('')}</div>
     <h3 style="font-size:20px">${X('複合母音','Ho̍k-ha̍p bó-im')} ${COMPOUNDS.length} ${X('个','ê')}</h3><div class="bookgrid">${COMPOUNDS.map(tile).join('')}</div>
+    <h3 style="font-size:20px">${X('鼻化韻','Phīnn-huà-ūn')} ${NASAL.length} ${X('个','ê')}</h3><div class="bookgrid">${NASAL.map(tile).join('')}</div>
+    <h3 style="font-size:20px">${X('入聲（尾音）','Ji̍p-siann')} ${CHECKED.length} ${X('个','ê')}</h3><div class="bookgrid">${CHECKED.map(tile).join('')}</div>
+    <h3 style="font-size:20px">${X('聲調','Siann-tiāu')} ${TONES.length} ${X('个','ê')}</h3><div class="bookgrid">${TONES.map(tile).join('')}</div>
     <h3 style="font-size:20px">${X('台羅和白話字無仝的所在','Tâi-lô kah Pe̍h-ōe-jī bô kâng ê sóo-tsāi')}</h3>
     <div class="diff">${diff.map(([t,p])=>`<div><span class="roman">${t}</span><i>→</i><span class="roman">${p}</span></div>`).join('')}</div>
     <p class="note">${X(`台羅是教育部 2006 年公告的「臺灣台語羅馬字拼音方案」；白話字（教會羅馬字）有超過百年的歷史。兩種寫法的聲調符號仝款，差別主要佇頂面這幾項。注音只是近似，b、g、j 是台語特有的濁音，華語無。各地腔口有差，例如「雞」有人講 kue、「火」有人講 hé。`,'Tâi-lô sī Kàu-io̍k-pōo 2006 nî kong-kò ê phing-im hong-àn; Pe̍h-ōe-jī í-king ū pah gōa nî ê le̍k-sú. Nn̄g-hāng ê siann-tiāu hû-hō sio-kâng. B, g, j sī Huâ-gí bô ê im. Kok-tē khiunn-kháu bô kâng, pí-lūn ke ū lâng kóng kue.')}</p>
@@ -1282,14 +1669,14 @@ function showPause(){
 function resume(){hideOv();mode='play'}
 function showResult(){
   const g=G,s=g.wrong===0?3:g.wrong<=2?2:1;
-  SAVE.stars[g.li]=Math.max(SAVE.stars[g.li]||0,s);persist();
-  const nextOk=g.def.n<7;
+  SAVE.stars[sk(g.li)]=Math.max(SAVE.stars[sk(g.li)]||0,s);persist();
+  const nextOk=g.def.n<LAST;
   showOv(`<div class="stack" style="text-align:center;align-items:center">
     <div class="eyebrow">${kuanName(g.li)} ${X(g.def.name,g.def.tl)}</div>
     <h2 style="font-size:40px;color:var(--gold)">${X('過關！','Kuè-kuan!')}${isLo()?'':`<span class="roman" style="font-size:22px;color:var(--ink)"> ${R('Kuè-kuan!')}</span>`}</h2>
     ${starsHTML(s,'bigstars')}
     <div class="stats" style="width:100%"><div><b>${g.got}</b><span>${X('珍珠','tsin-tsu')}</span></div><div><b>${g.wrong}</b><span>${X('答毋著','ìn m̄-tio̍h')}</span></div><div><b>${g.gates.length}</b><span>${X('字母','jī-bó')}</span></div></div>
-    <div class="chips" style="justify-content:center">${g.keys.map(k=>`<span class="chip">${esc(R(k))}</span>`).join('')}</div>
+    <div class="chips" style="justify-content:center">${g.keys.map(k=>`<span class="chip">${esc(lab(k))}</span>`).join('')}</div>
     <p class="note">${s===3?X('全部攏答對，誠厲害！','Tsuân-pōo lóng ìn tio̍h, tsiânn lī-hāi!'):X('答毋著的字母，會使去字母簿閣看一擺。','Ìn m̄-tio̍h ê jī-bó, ē-sái khì jī-bó-phōo koh khuànn tsi̍t-pái.')}</p>
     <div class="row" style="justify-content:center">
       ${nextOk?`<button class="btn gold" data-default id="n">${X('下一關','Āu tsi̍t kuan')} ▶</button>`:''}
