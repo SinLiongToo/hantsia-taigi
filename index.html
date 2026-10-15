@@ -69,7 +69,15 @@ p{margin:0;line-height:1.7}
 .title{text-align:center;align-items:center}
 .logo{font-size:clamp(40px,8vw,72px);color:var(--gold);line-height:1.1;text-shadow:0 4px 0 var(--lantern-deep),0 0 30px rgba(245,182,48,.35)}
 .logo-sub{font-size:clamp(16px,3vw,22px);color:var(--ink)}
-.cast{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;width:100%;max-width:620px}
+.cast{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%;max-width:480px}
+.heroes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%;max-width:560px}
+.hero{border:2px solid var(--edge);background:var(--panel-2);color:var(--ink);border-radius:14px;padding:8px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;font-family:var(--f-body);min-width:0}
+.hero canvas{width:64px;height:56px}
+.hero b{font-family:var(--f-display);font-size:18px}
+.hero .roman{font-size:13px;color:var(--gold)}
+.hero .hd{font-size:12px;color:var(--muted)}
+.hero[aria-pressed="true"]{border-color:var(--gold);background:rgba(245,182,48,.16);box-shadow:0 0 0 2px rgba(245,182,48,.35)}
+.hero:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .cast figure{margin:0;background:var(--panel-2);border-radius:14px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
 .cast canvas{width:64px;height:56px}
 .cast b{font-family:var(--f-display);font-size:17px}
@@ -148,7 +156,8 @@ body.lo .lv h3{font-size:24px}
   .ctile .big{font-size:56px}
   .words li{grid-template-columns:36px 40px minmax(0,1fr);}
   .words .mean{grid-column:3}
-  .cast{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .heroes{gap:6px}
+  .hero canvas{width:52px;height:46px}
   .sheet{padding:18px}
 }
 @media (max-width:460px){.lvgrid{grid-template-columns:minmax(0,1fr)}}
@@ -282,7 +291,7 @@ const THEMES={
 };
 
 /* ---------- save ---------- */
-const SAVE={stars:{},book:{},pearls:0,muted:false,rom:'tl',script:'han',world:'island',v:2};
+const SAVE={stars:{},book:{},pearls:0,muted:false,rom:'tl',script:'han',world:'island',hero:'hantsia',v:2};
 try{const s=JSON.parse(localStorage.getItem('hantsia-save')||'{}');if(s.v!==2&&s.stars&&s.stars[5]){s.stars[7]=s.stars[5];delete s.stars[5]}s.v=2;Object.assign(SAVE,s)}catch(e){}
 
 /* ---------- romanization: Tâi-lô → Pe̍h-ōe-jī ---------- */
@@ -723,6 +732,63 @@ function drawFX(g){
 }
 
 /* ---------- sprites ---------- */
+function drawBear(c,x,y,face,t,run,blink){
+  c.save();c.translate(x+13,y+34);c.scale(face,1);
+  const ph=run?Math.sin(t*18):0;
+  c.fillStyle='#16161a';oval(c,-7+ph*4,-4,6,4.5);oval(c,7-ph*4,-4,6,4.5);
+  c.translate(0,run?-Math.abs(Math.sin(t*18))*2.5:0);
+  c.fillStyle='#24242a';oval(c,-1,-15,14,12.5);
+  oval(c,-6,-38,5,5);oval(c,8,-38,5,5);
+  c.fillStyle='#4a3a40';oval(c,-6,-38,2.4,2.4);oval(c,8,-38,2.4,2.4);
+  c.fillStyle='#24242a';oval(c,1,-29,12,10);
+  c.strokeStyle='#f4efe0';c.lineWidth=3.2;c.lineCap='round';c.beginPath();c.moveTo(-9,-19);c.quadraticCurveTo(-1,-9,7,-19);c.stroke();
+  c.fillStyle='#c8a27a';oval(c,8,-25.5,6,4.5);
+  c.fillStyle='#111';oval(c,12.5,-27,2.2,1.6);
+  c.strokeStyle='#111';c.lineWidth=1.2;c.beginPath();c.arc(10,-24,2,.3,Math.PI-.3);c.stroke();
+  if(!blink){c.fillStyle='#fff';oval(c,1,-32,2.6,2.8);oval(c,8,-32.5,2.3,2.6);c.fillStyle='#111';oval(c,1.7,-31.8,1.4,1.7);oval(c,8.6,-32.3,1.3,1.6)}
+  else{c.fillStyle='#ddd';c.fillRect(-1,-32,5,1.4);c.fillRect(6.5,-32.5,4,1.4)}
+  c.fillStyle='rgba(255,140,160,.5)';oval(c,-2,-26,2.4,1.6);
+  c.restore();
+}
+function drawPangolin(c,x,y,face,t,run,blink){
+  c.save();c.translate(x+13,y+34);c.scale(face,1);
+  const ph=run?Math.sin(t*18):0;
+  c.fillStyle='#4a3420';oval(c,-8+ph*3,-3,4.5,3);oval(c,6-ph*3,-3,4.5,3);
+  c.translate(0,run?-Math.abs(Math.sin(t*18))*2:0);
+  c.fillStyle='#8a6634';c.beginPath();c.moveTo(-10,-18);c.quadraticCurveTo(-26,-14,-25,-2);c.quadraticCurveTo(-18,-6,-8,-8);c.fill();
+  c.fillStyle='#a07a42';oval(c,-2,-16,15,13,-.1);
+  c.strokeStyle='#6a4a22';c.lineWidth=1.6;
+  for(let r=0;r<3;r++)for(let k=0;k<4;k++){const sx=-13+k*7+(r%2)*3.5,sy=-25+r*6.5;c.beginPath();c.arc(sx,sy,4,Math.PI*1.05,Math.PI*1.95);c.stroke()}
+  c.fillStyle='#d8b07a';oval(c,12,-12,7.5,5.5,.25);oval(c,18.5,-9,3.4,2.3,.3);
+  c.fillStyle='#e88a8a';oval(c,21.5,-8.4,1.2,1);
+  if(!blink){c.fillStyle='#fff';oval(c,13,-14.5,2.1,2.1);c.fillStyle='#111';oval(c,13.6,-14.3,1.2,1.4)}
+  else{c.fillStyle='#111';c.fillRect(11.5,-14.5,4,1.3)}
+  c.restore();
+}
+function drawBeetle(c,x,y,face,t,run,blink){
+  c.save();c.translate(x+13,y+34);c.scale(face,1);
+  c.strokeStyle='#22140a';c.lineWidth=2.2;c.lineCap='round';
+  for(const i of [-8,0,8]){const k=run?Math.sin(t*22+i)*3:0;c.beginPath();c.moveTo(i,-7);c.lineTo(i-3+k,0);c.stroke()}
+  c.translate(0,run?-Math.abs(Math.sin(t*18))*1.5:0);
+  const gr=c.createLinearGradient(0,-26,0,-3);gr.addColorStop(0,'#6a3a1a');gr.addColorStop(1,'#2a1608');
+  c.fillStyle=gr;oval(c,-3,-14,14,11);
+  c.strokeStyle='rgba(20,8,0,.6)';c.lineWidth=1.2;c.beginPath();c.moveTo(-3,-25);c.quadraticCurveTo(-1,-14,-3,-3);c.stroke();
+  c.fillStyle='#3a2010';oval(c,10,-15,7,7.5);
+  c.fillStyle='#2a1608';oval(c,16,-11,4.2,4);
+  c.strokeStyle='#3a2010';c.lineWidth=4;c.beginPath();c.moveTo(17,-13);c.quadraticCurveTo(27,-17,24,-33);c.stroke();
+  c.lineWidth=2.5;c.beginPath();c.moveTo(24,-33);c.lineTo(21,-37);c.moveTo(24,-33);c.lineTo(28,-36);c.moveTo(10,-21);c.lineTo(14,-27);c.stroke();
+  c.fillStyle='rgba(255,255,255,.28)';oval(c,-6,-20,6,2.4,-.2);
+  if(!blink){c.fillStyle='#fff';oval(c,15,-12.5,2.2,2.2);c.fillStyle='#111';oval(c,15.6,-12.4,1.2,1.4)}
+  else{c.fillStyle='#ddd';c.fillRect(13.5,-12.5,4,1.2)}
+  c.restore();
+}
+const HEROES={
+  hantsia:{name:'番薯仔',tl:'Han-tsî-á',desc:'台灣的形',draw:(...a)=>drawPlayer(...a)},
+  bear:{name:'烏熊',tl:'Oo-hîm',desc:'台灣黑熊',draw:drawBear},
+  pangolin:{name:'鯪鯉',tl:'Lâ-lí',desc:'穿山甲',draw:drawPangolin},
+  beetle:{name:'獨角龜',tl:'To̍k-kak-ku',desc:'獨角仙',draw:drawBeetle},
+};
+const hero=()=>HEROES[SAVE.hero]||HEROES.hantsia;
 function drawPlayer(c,x,y,face,t,run,blink){
   c.save();c.translate(x+13,y+34);c.scale(face,1);
   const ph=run?Math.sin(t*18):0;
@@ -899,7 +965,7 @@ function endDemo(){
 }
 function drawDemo(g){
   const a=g.auto,cap=X(...DEMO_CAP[a.cap]);
-  ctx.font=`700 21px ${FD}`;const w=Math.min(W-40,ctx.measureText(cap).width+48),x=(W-w)/2,y=H-128;
+  ctx.font=`700 21px ${FD}`;const w=Math.min(W-40,ctx.measureText(cap).width+48),x=(W-w)/2,y=166;
   ctx.fillStyle='rgba(255,246,226,.96)';rr(ctx,x,y,w,50,25);ctx.fill();ctx.strokeStyle='#f5b630';ctx.lineWidth=3;ctx.stroke();
   txt(cap,W/2,y+26,`700 21px ${FD}`,'#2a1636','center','middle');
   const tag=X('示範中・按任何鍵跳過','Sī-huān・tshi̍h jīm-hô kiān thiàu-kuè');ctx.font=`700 14px ${FD}`;const tw=ctx.measureText(tag).width+28;
@@ -993,7 +1059,7 @@ function render(){
     if(!e.alive){if(e.dead>.5)continue;ctx.globalAlpha=1-e.dead*2;}
     if(e.type==='roach')drawRoach(ctx,e.x,e.y,e.vx>0?1:-1,g.t,!e.alive);else drawMosq(ctx,e.x,e.y+(e.alive?0:e.dead*120),e.dir,g.t,!e.alive);
     ctx.globalAlpha=1}
-  if(!g.demo){const p=g.p;if(!(p.inv>0&&Math.floor(p.inv*14)%2))drawPlayer(ctx,p.x,p.y,p.face,g.t,p.run,(g.t%3.2)<.12)}
+  if(!g.demo){const p=g.p;if(!(p.inv>0&&Math.floor(p.inv*14)%2))hero().draw(ctx,p.x,p.y,p.face,g.t,p.run,(g.t%3.2)<.12)}
   for(const q of g.parts){const a=clamp(q.life/q.max,0,1);ctx.globalAlpha=a;
     if(q.kind==='dot'){ctx.fillStyle=q.color;ctx.fillRect(q.x,q.y,q.s,q.s)}
     else if(q.kind==='text'){ctx.font=`700 ${q.size}px ${q.font}`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.lineWidth=4;ctx.strokeStyle='rgba(20,10,30,.8)';ctx.strokeText(q.text,q.x,q.y);ctx.fillStyle=q.color;ctx.fillText(q.text,q.x,q.y)}
@@ -1104,24 +1170,26 @@ function showTitle(){
   mode='menu';G=buildLevel(0,true);
   showOv(`<div class="stack title">
     <div class="eyebrow">${X('台語子音・母音 闖關遊戲','Tâi-gí tsú-im・bó-im tshuàng-kuan iû-hì')}</div>
-    <h1 class="logo">${X('番薯仔大冒險','Han-tsî-á Tāi Mōo-hiám')}</h1>
-    ${isLo()?'':`<div class="logo-sub roman">${R('Han-tsî-á Tāi Mōo-hiám')}</div>`}<div class="row" style="justify-content:center">${scriptSwitch()}${romSwitch()}</div>
-    <p style="max-width:34em">${X('番薯仔欲環島！一路撞「字」磚收集羅馬字字母，跳起來撞正確的字母磚，答對才會開門。','Han-tsî-á beh khuân-tó! It-lōo lòng jī-tsng siu-tsi̍p Lô-má-jī jī-bó; thiàu--khí-lâi lòng tio̍h-ê jī-bó tsng, ìn tio̍h tsiah ē khui mn̂g.')}</p>
-    <div class="cast">
-      <figure><canvas id="m0" width="128" height="112"></canvas>${isLo()?'':'<b>番薯仔</b>'}<span class="roman">${R('han-tsî-á')}</span><span>${X('就是你','tō sī lí')}</span></figure>
-      <figure><canvas id="m1" width="128" height="112"></canvas>${isLo()?'':'<b>字磚</b>'}<span class="roman">${R('jī-tsng')}</span><span>${X('撞開學新字母','lòng--khui o̍h sin jī-bó')}</span></figure>
-      <figure><canvas id="m2" width="128" height="112"></canvas>${isLo()?'':'<b>虼蚻</b>'}<span class="roman">${R('ka-tsua̍h')}</span><span>${X('踏頭殼打倒','ta̍h thâu-khak phah tó')}</span></figure>
-      <figure><canvas id="m3" width="128" height="112"></canvas>${isLo()?'':'<b>蠓仔</b>'}<span class="roman">báng-á</span><span>${X('答錯會飛出來','ìn m̄-tio̍h ē pue--tshut-lâi')}</span></figure>
-    </div>
+    <h1 class="logo">${X(hero().name+'大冒險',hero().tl+' Tāi Mōo-hiám')}</h1>
+    ${isLo()?'':`<div class="logo-sub roman">${R(hero().tl+' Tāi Mōo-hiám')}</div>`}<div class="row" style="justify-content:center">${scriptSwitch()}${romSwitch()}</div>
+    <p style="max-width:34em">${X(hero().name+'欲環島！一路撞「字」磚收集羅馬字字母，跳起來撞正確的字母磚，答對才會開門。',hero().tl+' beh khuân-tó! It-lōo lòng jī-tsng siu-tsi̍p Lô-má-jī jī-bó; thiàu--khí-lâi lòng tio̍h-ê jī-bó tsng, ìn tio̍h tsiah ē khui mn̂g.')}</p>
+    <div class="eyebrow">${X('揀角色','Kíng kak-sik')}</div>
+    <div class="heroes" role="group" aria-label="${X('揀角色','Kíng kak-sik')}">${Object.entries(HEROES).map(([k,h])=>`<button type="button" class="hero" data-hero="${k}" aria-pressed="${SAVE.hero===k}"><canvas id="hc-${k}" width="128" height="112"></canvas>${isLo()?'':`<b>${h.name}</b>`}<span class="roman">${R(h.tl.toLowerCase())}</span>${isLo()?'':`<span class="hd">${h.desc}</span>`}</button>`).join('')}</div>
     <div class="row" style="justify-content:center">
       <button class="btn gold" data-default id="go">${X('開始冒險','Khai-sí mōo-hiám')} ▶</button>
       <button class="btn ghost" id="demo">${X('看示範','Khuànn sī-huān')}</button>
       <button class="btn ghost" id="book">${X('字母簿','Jī-bó-phōo')}</button>
     </div>
+    <div class="cast">
+      <figure><canvas id="m1" width="128" height="112"></canvas>${isLo()?'':'<b>字磚</b>'}<span class="roman">${R('jī-tsng')}</span><span>${X('撞開學新字母','lòng--khui o̍h sin jī-bó')}</span></figure>
+      <figure><canvas id="m2" width="128" height="112"></canvas>${isLo()?'':'<b>虼蚻</b>'}<span class="roman">${R('ka-tsua̍h')}</span><span>${X('踏頭殼打倒','ta̍h thâu-khak phah tó')}</span></figure>
+      <figure><canvas id="m3" width="128" height="112"></canvas>${isLo()?'':'<b>蠓仔</b>'}<span class="roman">báng-á</span><span>${X('答錯會飛出來','ìn m̄-tio̍h ē pue--tshut-lâi')}</span></figure>
+    </div>
     <div class="keys"><kbd>←</kbd> <kbd>→</kbd> ${X('走路','kiânn')}　<kbd>Space</kbd> / <kbd>↑</kbd> ${X('跳','thiàu')}　<kbd>P</kbd> ${X('暫停','thîng')}　<kbd>M</kbd> ${X('音效','im-hāu')}</div>
   </div>`);
   const mini=(id,fn)=>{const c=$(id).getContext('2d');c.scale(2,2);fn(c)};
-  mini('#m0',c=>drawPlayer(c,19,14,1,0,false,false));
+  for(const [k,h] of Object.entries(HEROES))mini('#hc-'+k,c=>h.draw(c,k==='pangolin'?24:19,16,1,0,false,false));
+  sheet.querySelectorAll('[data-hero]').forEach(b=>b.onclick=()=>{SAVE.hero=b.dataset.hero;persist();showTitle()});
   mini('#m1',c=>{c.fillStyle='#f0a628';c.fillRect(12,8,40,40);c.strokeStyle='#7a4410';c.lineWidth=2.5;c.strokeRect(13,9,38,38);c.font=`700 24px ${FD}`;c.fillStyle='#6a3200';c.textAlign='center';c.textBaseline='middle';c.fillText(isLo()?'jī':'字',32,30)});
   mini('#m2',c=>drawRoach(c,12,24,1,0,false));
   mini('#m3',c=>drawMosq(c,16,20,1,.2,false));
@@ -1233,7 +1301,7 @@ function showResult(){
 }
 function showOver(){
   showOv(`<div class="stack" style="text-align:center;align-items:center">
-    <h2 style="font-size:36px">${X('番薯仔忝矣……','Han-tsî-á thiám--ah...')}</h2>${isLo()?'':'<p class="roman" style="color:var(--gold)">Thiám--ah</p>'}
+    <h2 style="font-size:36px">${X(hero().name+'忝矣……',hero().tl+' thiám--ah...')}</h2>${isLo()?'':'<p class="roman" style="color:var(--gold)">Thiám--ah</p>'}
     <p>${X('無要緊，閣來一擺！','Bô-iàu-kín, koh lâi tsi̍t-pái!')}</p>
     <div class="row" style="justify-content:center"><button class="btn gold" data-default id="a">${X('再試一擺','Koh tshì tsi̍t-pái')}</button><button class="btn ghost" id="m">${X('地圖','Tē-tôo')}</button></div></div>`,true);
   $('#a').onclick=()=>startLevel(G.li);$('#m').onclick=showMap;
