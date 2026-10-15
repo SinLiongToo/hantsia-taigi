@@ -830,7 +830,7 @@ function bump(s){
   }else SFX.bump();
 }
 
-const PEARLS_PER_HEART=20;
+const PEARLS_PER_HEART=10;
 function gain(n){
   const g=G;g.got+=n;SAVE.pearls+=n;g.heal=Math.min(PEARLS_PER_HEART,(g.heal||0)+n);
   if(g.heal>=PEARLS_PER_HEART&&g.hearts<3){
@@ -893,7 +893,7 @@ function endDemo(){
   G=buildLevel(li,true);mode='menu';
   showOv(`<div class="stack" style="text-align:center;align-items:center">
     <h2 style="font-size:40px;color:var(--gold)">${X('換你矣！','Uānn lí--ah!')}</h2>
-    <p>${X('撞字磚學字母，看題目撞正確的字母磚，行到天燈就過關。每收集 20 粒珍珠，會補一粒命。','Lòng jī-tsng o̍h jī-bó, khuànn tê-bo̍k lòng tio̍h-ê jī-bó tsng, kiânn kàu thian-ting tō kuè-kuan. Tsin-tsu tsa̍p 20 lia̍p, ē póo tsi̍t lia̍p miā.')}</p>
+    <p>${X('撞字磚學字母，看題目撞正確的字母磚，行到天燈就過關。每收集 10 粒珍珠，會補一粒命。','Lòng jī-tsng o̍h jī-bó, khuànn tê-bo̍k lòng tio̍h-ê jī-bó tsng, kiânn kàu thian-ting tō kuè-kuan. Tsin-tsu tsa̍p 10 lia̍p, ē póo tsi̍t lia̍p miā.')}</p>
     <div class="row" style="justify-content:center"><button class="btn gold" data-default id="a">${X('開始冒險','Khai-sí mōo-hiám')} ▶</button><button class="btn ghost" id="d">${X('閣看一擺','Koh khuànn tsi̍t-pái')}</button></div></div>`,true);
   $('#a').onclick=showMap;$('#d').onclick=startDemo;
 }
