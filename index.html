@@ -205,47 +205,47 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 /* ---------- content: Tâi-lô letters ---------- */
 const LETTERS={};
 function defL(key,type,zy,tip,words){LETTERS[key]={key,type,zy,tip,words:words.map(([h,t,m,e])=>({h,t,m,e}))}}
-defL('p','子音','ㄅ','雙唇合起來再放開，氣流輕輕的，不送氣。',[['飛','[p]ue','飛','🕊️'],['包','[p]au','包子','🥟']]);
-defL('ph','子音','ㄆ','跟 {p} 同一個位置，但氣要噴出來。手放嘴前，會感覺到風！',[['炮','[ph]àu','鞭炮','🧨'],['鼻','[ph]īnn','鼻子','👃']]);
+defL('p','子音','','雙唇合起來再放開，氣流輕輕的，不送氣。',[['飛','[p]ue','飛','🕊️'],['包','[p]au','包子','🥟']]);
+defL('ph','子音','','跟 {p} 同一個位置，但氣要噴出來。手放嘴前，會感覺到風！',[['炮','[ph]àu','鞭炮','🧨'],['鼻','[ph]īnn','鼻子','👃']]);
 defL('b','子音','華語無','台語特有的濁音！像英語的 b：雙唇合起來，喉嚨要震動。',[['米','[b]í','米','🍚'],['帽','[b]ō','帽子','🧢']]);
-defL('m','子音','ㄇ','雙唇合起來，聲音從鼻子出來。',[['麵','[m]ī','麵','🍜'],['媽','[m]á','阿媽（祖母）','👵']]);
-defL('t','子音','ㄉ','舌尖頂住上牙齦再放開，不送氣。',[['茶','[t]ê','茶','🍵'],['豬','[t]i','豬','🐷']]);
-defL('th','子音','ㄊ','跟 {t} 同一個位置，但要送氣，氣噴出來。',[['糖','[th]n̂g','糖','🍬'],['天','[th]inn','天','☁️']]);
-defL('n','子音','ㄋ','舌尖頂住上牙齦，聲音從鼻子出來。',[['年','[n]î','年','🧧'],['籃','[n]â','籃子','🧺']]);
-defL('l','子音','ㄌ','舌尖輕輕點一下上牙齦，比華語的ㄌ更輕、更快。',[['人','[l]âng','人','🧍'],['路','[l]ōo','路','🛣️']]);
-defL('k','子音','ㄍ','舌根頂住上顎再放開，不送氣。',[['狗','[k]áu','狗','🐕'],['雞','[k]e','雞','🐔']]);
-defL('kh','子音','ㄎ','跟 {k} 同一個位置，但要送氣。',[['腳','[kh]a','腳','🦶'],['褲','[kh]òo','褲子','👖']]);
+defL('m','子音','','雙唇合起來，聲音從鼻子出來。',[['麵','[m]ī','麵','🍜'],['媽','[m]á','阿媽（祖母）','👵']]);
+defL('t','子音','','舌尖頂住上牙齦再放開，不送氣。',[['茶','[t]ê','茶','🍵'],['豬','[t]i','豬','🐷']]);
+defL('th','子音','','跟 {t} 同一個位置，但要送氣，氣噴出來。',[['糖','[th]n̂g','糖','🍬'],['天','[th]inn','天','☁️']]);
+defL('n','子音','','舌尖頂住上牙齦，聲音從鼻子出來。',[['年','[n]î','年','🧧'],['籃','[n]â','籃子','🧺']]);
+defL('l','子音','','舌尖輕輕點一下上牙齦，比華語的 l 更輕、更快。',[['人','[l]âng','人','🧍'],['路','[l]ōo','路','🛣️']]);
+defL('k','子音','','舌根頂住上顎再放開，不送氣。',[['狗','[k]áu','狗','🐕'],['雞','[k]e','雞','🐔']]);
+defL('kh','子音','','跟 {k} 同一個位置，但要送氣。',[['腳','[kh]a','腳','🦶'],['褲','[kh]òo','褲子','👖']]);
 defL('g','子音','華語無','台語特有的濁音！像英語的 g：舌根頂住上顎，喉嚨要震動。',[['牛','[g]û','牛','🐄'],['鵝','[g]ô','鵝','🦢']]);
-defL('ng','子音','ㄥ放字頭','把「ㄥ」的鼻音放在字的開頭：舌根頂住上顎，聲音從鼻子出來。',[['硬','[ng]ē','硬','🪨'],['雅','[ng]á','優雅','🌸']]);
-defL('h','子音','ㄏ','從喉嚨輕輕吐氣，比華語的ㄏ更輕柔。',[['魚','[h]î','魚','🐟'],['花','[h]ue','花','🌺']]);
-defL('ts','子音','ㄗ／ㄐ','舌尖音，不送氣。後面接 {i} 的時候，聽起來像ㄐ。',[['水','[ts]uí','水','💧'],['書','[ts]u','書','📖']]);
-defL('tsh','子音','ㄘ／ㄑ','跟 {ts} 同一個位置，但要送氣。後面接 {i} 的時候，聽起來像ㄑ。',[['車','[tsh]ia','車','🚗'],['菜','[tsh]ài','菜','🥬']]);
-defL('s','子音','ㄙ／ㄒ','舌尖留一條縫，讓氣流擦出去。後面接 {i} 的時候，聽起來像ㄒ。',[['獅','[s]ai','獅子','🦁'],['山','[s]uann','山','⛰️']]);
+defL('ng','子音','','鼻音 {ng} 放佇字的開頭：舌根頂住上顎，聲音從鼻子出來。',[['硬','[ng]ē','硬','🪨'],['雅','[ng]á','優雅','🌸']]);
+defL('h','子音','','從喉嚨輕輕吐氣，比華語的 h 更輕柔。',[['魚','[h]î','魚','🐟'],['花','[h]ue','花','🌺']]);
+defL('ts','子音','','舌尖先頂住上牙齦，再慢慢放開，不送氣。',[['水','[ts]uí','水','💧'],['書','[ts]u','書','📖']]);
+defL('tsh','子音','','跟 {ts} 同一個位置，但要送氣。',[['車','[tsh]ia','車','🚗'],['菜','[tsh]ài','菜','🥬']]);
+defL('s','子音','','舌尖靠近上牙齦，留一條縫讓氣流擦出去。',[['獅','[s]ai','獅子','🦁'],['山','[s]uann','山','⛰️']]);
 defL('j','子音','華語無','台語特有的濁音！像英語 z 的濁音，喉嚨要震動。',[['字','[j]ī','字','🔤'],['熱','[j]ua̍h','熱','🔥']]);
-defL('a','母音','ㄚ','嘴巴張大，自然發出聲音。',[['鴨','[a]h','鴨子','🦆'],['腳','kh[a]','腳','🦶']]);
-defL('i','母音','ㄧ','嘴角往兩邊拉開。',[['椅','[í]','椅子','🪑'],['豬','t[i]','豬','🐷']]);
-defL('u','母音','ㄨ','嘴唇圓圓的，往前嘟。',[['牛','g[û]','牛','🐄'],['龜','k[u]','烏龜','🐢']]);
-defL('e','母音','ㄝ','嘴巴半開，嘴角稍微拉開。',[['鞋','[ê]','鞋子','👟'],['雞','k[e]','雞','🐔']]);
-defL('o','母音','ㄜ','嘴唇微圓，介於ㄜ和ㄛ之間。台語的 {o} 和 {oo} 是兩個不同的音！',[['蚵','[ô]','蚵仔','🦪'],['刀','t[o]','刀子','🔪']]);
-defL('oo','母音','ㄛ','嘴巴張得比 {o} 大，嘴唇圓圓的，像ㄛ。',[['烏','[oo]','黑色','⚫'],['箍','kh[oo]','圓圈','⭕']]);
-defL('ai','複合母音','ㄞ','從 {a} 滑到 {i}，像ㄞ。',[['海','h[ái]','海','🌊'],['獅','s[ai]','獅子','🦁']]);
-defL('au','複合母音','ㄠ','從 {a} 滑到 {u}，像ㄠ。',[['狗','k[áu]','狗','🐕'],['包','p[au]','包子','🥟']]);
-defL('ia','複合母音','ㄧㄚ','從 {i} 滑到 {a}，像ㄧㄚ。',[['寫','s[iá]','寫字','✍️'],['車','tsh[ia]','車','🚗']]);
-defL('iu','複合母音','ㄧㄨ','從 {i} 滑到 {u}，尾音嘴唇要圓，比ㄧㄡ更清楚。',[['手','tsh[iú]','手','✋'],['秋','tsh[iu]','秋天','🍂']]);
-defL('io','複合母音','ㄧㄜ','從 {i} 滑到 {o}，華語無這个組合！',[['笑','tsh[iò]','笑','😄'],['蕉','ts[io]','香蕉（芎蕉）','🍌']]);
-defL('ua','複合母音','ㄨㄚ','從 {u} 滑到 {a}，像ㄨㄚ。',[['紙','ts[uá]','紙','📄'],['沙','s[ua]','沙','🏖️']]);
-defL('ue','複合母音','ㄨㄝ','從 {u} 滑到 {e}，像ㄨㄝ。',[['火','h[ué]','火','🔥'],['飛','p[ue]','飛','🕊️']]);
-defL('ui','複合母音','ㄨㄧ','從 {u} 滑到 {i}，尾音是清楚的 {i}。',[['水','ts[uí]','水','💧'],['開','kh[ui]','開門','🚪']]);
-defL('iau','複合母音','ㄧㄠ','{i}＋{a}＋{u} 三个音連做伙，像ㄧㄠ。',[['枵','[iau]','肚子餓','🍽️'],['貓','n[iau]','貓','🐈']]);
-defL('uai','複合母音','ㄨㄞ','{u}＋{a}＋{i} 三个音連做伙，像ㄨㄞ。',[['歪','[uai]','歪','↗️'],['乖','k[uai]','乖','😇']]);
-defL('ann','鼻化韻','ㄚ鼻化','發 {a} 的時陣，氣同時對鼻空出來。{nn} 是鼻化的記號，毋是兩个 n！',[['衫','s[ann]','衫','👕'],['三','s[ann]','三','3️⃣']]);
-defL('inn','鼻化韻','ㄧ鼻化','發 {i} 的時陣，氣同時對鼻空出來。',[['圓','[înn]','圓','⭕'],['甜','t[inn]','甜','🍬']]);
-defL('enn','鼻化韻','ㄝ鼻化','發 {e} 的時陣，氣同時對鼻空出來。',[['嬰','[enn]','嬰仔','👶'],['坑','kh[enn]','坑','🕳️']]);
-defL('iann','鼻化韻','ㄧㄚ鼻化','發 {ia} 的時陣，氣同時對鼻空出來。',[['餅','p[iánn]','餅','🍪'],['驚','k[iann]','驚（怕）','😱']]);
-defL('uann','鼻化韻','ㄨㄚ鼻化','發 {ua} 的時陣，氣同時對鼻空出來。',[['碗','[uánn]','碗','🥣'],['山','s[uann]','山','⛰️']]);
-defL('-p','入聲','ㄅ收尾','嘴唇合起來收尾，毋免放開。聲音短短。',[['十','tsa̍[p]','十','🔟'],['盒','a̍[p]','盒仔','📦']]);
-defL('-t','入聲','ㄉ收尾','舌尖頂牢上齒後壁收尾，毋免放開。聲音短短。',[['日','ji̍[t]','日頭','☀️'],['筆','pi[t]','筆','✏️']]);
-defL('-k','入聲','ㄍ收尾','舌根頂牢收尾，毋免放開。聲音短短。',[['鹿','lo̍[k]','鹿','🦌'],['六','la̍[k]','六','6️⃣']]);
+defL('a','母音','','嘴巴張大，自然發出聲音。',[['鴨','[a]h','鴨子','🦆'],['腳','kh[a]','腳','🦶']]);
+defL('i','母音','','嘴角往兩邊拉開。',[['椅','[í]','椅子','🪑'],['豬','t[i]','豬','🐷']]);
+defL('u','母音','','嘴唇圓圓的，往前嘟。',[['牛','g[û]','牛','🐄'],['龜','k[u]','烏龜','🐢']]);
+defL('e','母音','','嘴巴半開，嘴角稍微拉開。',[['鞋','[ê]','鞋子','👟'],['雞','k[e]','雞','🐔']]);
+defL('o','母音','','嘴唇微圓，舌頭較後。台語的 {o} 和 {oo} 是兩個不同的音！',[['蚵','[ô]','蚵仔','🦪'],['刀','t[o]','刀子','🔪']]);
+defL('oo','母音','','嘴巴張得比 {o} 大，嘴唇圓圓的。',[['烏','[oo]','黑色','⚫'],['箍','kh[oo]','圓圈','⭕']]);
+defL('ai','複合母音','','從 {a} 滑到 {i}。',[['海','h[ái]','海','🌊'],['獅','s[ai]','獅子','🦁']]);
+defL('au','複合母音','','從 {a} 滑到 {u}。',[['狗','k[áu]','狗','🐕'],['包','p[au]','包子','🥟']]);
+defL('ia','複合母音','','從 {i} 滑到 {a}。',[['寫','s[iá]','寫字','✍️'],['車','tsh[ia]','車','🚗']]);
+defL('iu','複合母音','','從 {i} 滑到 {u}，尾音嘴唇要圓。',[['手','tsh[iú]','手','✋'],['秋','tsh[iu]','秋天','🍂']]);
+defL('io','複合母音','','從 {i} 滑到 {o}，華語無這个組合！',[['笑','tsh[iò]','笑','😄'],['蕉','ts[io]','香蕉（芎蕉）','🍌']]);
+defL('ua','複合母音','','從 {u} 滑到 {a}。',[['紙','ts[uá]','紙','📄'],['沙','s[ua]','沙','🏖️']]);
+defL('ue','複合母音','','從 {u} 滑到 {e}。',[['火','h[ué]','火','🔥'],['飛','p[ue]','飛','🕊️']]);
+defL('ui','複合母音','','從 {u} 滑到 {i}，尾音是清楚的 {i}。',[['水','ts[uí]','水','💧'],['開','kh[ui]','開門','🚪']]);
+defL('iau','複合母音','','{i}＋{a}＋{u} 三个音連做伙。',[['枵','[iau]','肚子餓','🍽️'],['貓','n[iau]','貓','🐈']]);
+defL('uai','複合母音','','{u}＋{a}＋{i} 三个音連做伙。',[['歪','[uai]','歪','↗️'],['乖','k[uai]','乖','😇']]);
+defL('ann','鼻化韻','','發 {a} 的時陣，氣同時對鼻空出來。{nn} 是鼻化的記號，毋是兩个 n！',[['衫','s[ann]','衫','👕'],['三','s[ann]','三','3️⃣']]);
+defL('inn','鼻化韻','','發 {i} 的時陣，氣同時對鼻空出來。',[['圓','[înn]','圓','⭕'],['甜','t[inn]','甜','🍬']]);
+defL('enn','鼻化韻','','發 {e} 的時陣，氣同時對鼻空出來。',[['嬰','[enn]','嬰仔','👶'],['坑','kh[enn]','坑','🕳️']]);
+defL('iann','鼻化韻','','發 {ia} 的時陣，氣同時對鼻空出來。',[['餅','p[iánn]','餅','🍪'],['驚','k[iann]','驚（怕）','😱']]);
+defL('uann','鼻化韻','','發 {ua} 的時陣，氣同時對鼻空出來。',[['碗','[uánn]','碗','🥣'],['山','s[uann]','山','⛰️']]);
+defL('-p','入聲','','嘴唇合起來收尾，毋免放開。聲音短短。',[['十','tsa̍[p]','十','🔟'],['盒','a̍[p]','盒仔','📦']]);
+defL('-t','入聲','','舌尖頂牢上齒後壁收尾，毋免放開。聲音短短。',[['日','ji̍[t]','日頭','☀️'],['筆','pi[t]','筆','✏️']]);
+defL('-k','入聲','','舌根頂牢收尾，毋免放開。聲音短短。',[['鹿','lo̍[k]','鹿','🦌'],['六','la̍[k]','六','6️⃣']]);
 defL('-h','入聲','喉塞收尾','喉嚨忽然擋牢，聲音短短停落來。',[['鴨','a[h]','鴨仔','🦆'],['肉','ba[h]','肉','🥩']]);
 defL('t1','聲調','55','第一調：高平調，聲音懸懸、平平。無調號。',[['獅','s[a]i','獅','🦁'],['豬','t[i]','豬','🐷']]);
 defL('t2','聲調','51','第二調：高降調，對懸跋落來。調號「ˊ」，像 á。',[['虎','h[óo]','虎','🐯'],['狗','k[á]u','狗','🐕']]);
@@ -255,6 +255,58 @@ defL('t5','聲調','24','第五調：升調，對低升起來，親像咧問問�
 defL('t7','聲調','33','第七調：中平調，平平、中中。調號「ˉ」，像 ā。第六調佇大部份腔口佮第七調仝款。',[['象','tsh[iū]nn','象','🐘'],['麵','m[ī]','麵','🍜']]);
 defL('t8','聲調','5ʔ','第八調：短促的懸調，尾音 p、t、k、h。調號「ˈ」，像 a̍h。',[['鹿','l[o̍]k','鹿','🦌'],['熱','j[ua̍]h','熱','🔥']]);
 for(const n of [1,2,3,4,5,7,8])LETTERS['t'+n].label=String(n);
+const MORE_WORDS={
+  p:[['冰','[p]ing','冰','🧊'],['筆','[p]it','筆','✏️'],['斧','[p]óo','斧頭','🪓']],
+  ph:[['蜂','[ph]ang','蜂','🐝'],['被','[ph]uē','棉被','🛏️'],['拍','[ph]ah','拍噗仔','👏']],
+  b:[['肉','[b]ah','肉','🥩'],['馬','[b]é','馬','🐴'],['目','[b]a̍k','目睭','👁️']],
+  m:[['門','[m]n̂g','門','🚪'],['物','[m]i̍h','物件','🎁'],['棉','[m]î','棉','🧶']],
+  t:[['刀','[t]o','刀','🔪'],['竹','[t]ik','竹','🎋'],['桌','[t]oh','桌仔','🍽️']],
+  th:[['兔','[th]òo','兔仔','🐇'],['鐵','[th]ih','鐵','🔩'],['頭','[th]âu','頭','🧑']],
+  n:[['貓','[n]iau','貓','🐈'],['腦','[n]áu','頭腦','🧠']],
+  l:[['奶','[l]ing','牛奶','🥛'],['六','[l]a̍k','六','6️⃣'],['老','[l]āu','老人','👴']],
+  k:[['猴','[k]âu','猴','🐒'],['龜','[k]u','龜','🐢'],['歌','[k]ua','歌','🎵']],
+  kh:[['苦','[kh]óo','苦','😖'],['空','[kh]ang','空','🕳️'],['開','[kh]ui','開','🔓']],
+  g:[['五','[g]ōo','五','5️⃣'],['月','[g]ue̍h','月','🌙'],['牙','[g]ê','牙','🦷']],
+  ng:[['夾','[ng]eh','夾','🥢'],['迎','[ng]iâ','迎（迎鬧熱）','🎉']],
+  h:[['雨','[h]ōo','雨','🌧️'],['海','[h]ái','海','🌊'],['虎','[h]óo','虎','🐯']],
+  ts:[['鳥','[ts]iáu','鳥仔','🐦'],['紙','[ts]uá','紙','📄'],['酒','[ts]iú','酒','🍶']],
+  tsh:[['樹','[tsh]iū','樹','🌳'],['草','[tsh]áu','草','🌿'],['手','[tsh]iú','手','✋']],
+  s:[['傘','[s]uànn','雨傘','☂️'],['鎖','[s]ó','鎖','🔒'],['衫','[s]ann','衫','👕']],
+  j:[['日','[j]i̍t','日頭','☀️'],['入','[j]i̍p','入','📥'],['尿','[j]iō','尿','🚽']],
+  a:[['柴','tsh[â]','柴','🪵'],['媽','m[á]','阿媽','👵'],['塔','th[a]h','塔','🗼']],
+  i:[['魚','h[î]','魚','🐟'],['米','b[í]','米','🍚'],['字','j[ī]','字','🔤']],
+  u:[['書','ts[u]','書','📖'],['珠','ts[u]','珠','🔮'],['有','[ū]','有','✅']],
+  e:[['茶','t[ê]','茶','🍵'],['馬','b[é]','馬','🐴'],['牙','g[ê]','牙','🦷']],
+  o:[['鵝','g[ô]','鵝','🦢'],['帽','b[ō]','帽仔','🧢'],['糕','k[o]','糕','🍰']],
+  oo:[['虎','h[óo]','虎','🐯'],['路','l[ōo]','路','🛣️'],['兔','th[òo]','兔仔','🐇']],
+  ai:[['菜','tsh[ài]','菜','🥬'],['屎','s[ái]','屎','💩'],['知','ts[ai]','知影','💡']],
+  au:[['猴','k[âu]','猴','🐒'],['頭','th[âu]','頭','🧑'],['九','k[áu]','九','9️⃣']],
+  ia:[['蟻','h[iā]','狗蟻','🐜'],['謝','s[iā]','多謝','🙏'],['夜','[iā]','暗暝','🌃']],
+  iu:[['酒','ts[iú]','酒','🍶'],['油','[iû]','油','🛢️'],['球','k[iû]','球','⚽']],
+  io:[['叫','k[iò]','叫','📣'],['橋','k[iô]','橋','🌉'],['石','ts[io̍]h','石頭','🪨']],
+  ua:[['歌','k[ua]','歌','🎵'],['蛇','ts[uâ]','蛇','🐍'],['熱','j[ua̍]h','熱','🔥']],
+  ue:[['杯','p[ue]','杯仔','🥤'],['尾','b[ué]','尾','🐾'],['月','g[ue̍]h','月','🌙']],
+  ui:[['鬼','k[uí]','鬼','👻'],['肥','p[uî]','肥','🐷'],['喙','tsh[uì]','喙','👄']],
+  iau:[['鳥','ts[iáu]','鳥仔','🐦'],['錶','p[iáu]','手錶','⌚']],
+  uai:[['快','kh[uài]','快','⚡'],['怪','k[uài]','奇怪','👾']],
+  ann:[['敢','k[ánn]','敢','💪'],['餡','[ānn]','餡','🥟']],
+  inn:[['鼻','ph[īnn]','鼻','👃'],['天','th[inn]','天','☁️'],['錢','ts[înn]','錢','💰']],
+  enn:[['病','p[ēnn]','破病','🤒'],['星','tsh[enn]','星','⭐']],
+  iann:[['影','[iánn]','影','🎬'],['聽','th[iann]','聽','👂'],['城','s[iânn]','城','🏯']],
+  uann:[['寒','k[uânn]','寒','🥶'],['半','p[uànn]','一半','🌗'],['單','t[uann]','單','📋']],
+  '-p':[['汁','tsia[p]','汁','🧃'],['入','ji̍[p]','入','📥'],['粒','lia̍[p]','粒','🟤']],
+  '-t':[['七','tshi[t]','七','7️⃣'],['蜜','bi̍[t]','蜜','🍯'],['賊','tsha̍[t]','賊仔','🦹']],
+  '-k':[['竹','ti[k]','竹','🎋'],['目','ba̍[k]','目睭','👁️'],['角','ka[k]','角','📐']],
+  '-h':[['葉','hio̍[h]','葉仔','🍃'],['鐵','thi[h]','鐵','🔩'],['八','pe[h]','八','8️⃣']],
+  t1:[['雞','k[e]','雞','🐔'],['冰','p[i]ng','冰','🧊'],['杯','p[ue]','杯仔','🥤']],
+  t2:[['米','b[í]','米','🍚'],['紙','tsu[á]','紙','📄'],['鳥','tsi[á]u','鳥仔','🐦']],
+  t3:[['兔','th[òo]','兔仔','🐇'],['四','s[ì]','四','4️⃣'],['喙','tshu[ì]','喙','👄']],
+  t4:[['七','tsh[i]t','七','7️⃣'],['筆','p[i]t','筆','✏️'],['竹','t[i]k','竹','🎋']],
+  t5:[['魚','h[î]','魚','🐟'],['茶','t[ê]','茶','🍵'],['人','l[â]ng','人','🧍']],
+  t7:[['字','j[ī]','字','🔤'],['路','l[ōo]','路','🛣️'],['帽','b[ō]','帽仔','🧢']],
+  t8:[['十','ts[a̍]p','十','🔟'],['日','j[i̍]t','日頭','☀️'],['白','p[e̍]h','白色','⚪']],
+};
+for(const [k,ws] of Object.entries(MORE_WORDS))LETTERS[k].words.push(...ws.map(([h,t,m,e])=>({h,t,m,e})));
 const INITIALS=['p','ph','b','m','t','th','n','l','k','kh','g','ng','h','ts','tsh','s','j'];
 const VOWELS=['a','i','u','e','o','oo'];
 const COMPOUND1=['ai','au','ia','iu','io'],COMPOUND2=['ua','ue','ui','iau','uai'];
@@ -263,7 +315,7 @@ const NASAL=['ann','inn','enn','iann','uann'],CHECKED=['-p','-t','-k','-h'],TONE
 const ALL=[...INITIALS,...VOWELS,...COMPOUNDS,...NASAL,...CHECKED,...TONES];
 const lab=k=>R(LETTERS[k].label||k);
 const stripTone=t=>t.normalize('NFD').replace(/[\u0300-\u030F]/g,'').normalize('NFC');
-function pickWord(key,rand){const ws=LETTERS[key].words;return rand&&LETTERS[key].type==='子音'?ws[Math.random()<.5?0:1]:ws[1]}
+function pickWord(key,rand){const ws=LETTERS[key].words,pool=rand?ws:ws.length>2?ws.slice(2):ws.slice(1);return pool[Math.floor(Math.random()*pool.length)]}
 function pickOpts(key,r){return shuffle([key,...shuffle(groupOf(key).filter(k=>k!==key),r).slice(0,2)],r)}
 const PROMPT={'子音':['這个字的子音是？','Tsit jī ê tsú-im sī?'],'母音':['這个字的母音是？','Tsit jī ê bó-im sī?'],'複合母音':['這个字的母音是？','Tsit jī ê bó-im sī?'],'鼻化韻':['這个字的鼻化韻是？','Tsit jī ê phīnn-huà-ūn sī?'],'入聲':['這个字的尾音是？','Tsit jī ê bué-im sī?'],'聲調':['這个字是第幾調？','Tsit jī sī tē-kuí tiāu?']};
 const isVowel=k=>LETTERS[k].type!=='子音';
@@ -414,16 +466,16 @@ kh:'Kah {k} kāng uī-tì, m̄-koh ài sàng-khì.',
 g:'Tâi-gí te̍k-iú ê im! Tsi̍h-kin tú tiâu āu-bīn, âu-lâng ài tín-tāng, ná-tshin Ing-gí ê g.',
 ng:'Tsi̍h-kin tú tiâu āu-bīn, siann uì phīnn-khang tshut--lâi; kā ng khǹg tī jī ê thâu-tsîng.',
 h:'Uì âu-lâng khin-khin pûn khuì.',
-ts:'Tsi̍h-tsiam ê im, bô sàng-khì. Āu-bīn tsiap {i} ê sî, ná-tshin Huâ-gí ê ㄐ.',
-tsh:'Kah {ts} kāng uī-tì, m̄-koh ài sàng-khì. Tsiap {i} ê sî, ná-tshin ㄑ.',
-s:'Tsi̍h-tsiam lâu tsi̍t tiâu phāng, hōo khuì tshut--khì. Tsiap {i} ê sî, ná-tshin ㄒ.',
+ts:'Tsi̍h-tsiam tú tiâu tíng-khí āu-piah, koh bān-bān pàng--khui, bô sàng-khì.',
+tsh:'Kah {ts} kāng uī-tì, m̄-koh ài sàng-khì.',
+s:'Tsi̍h-tsiam lâu tsi̍t tiâu phāng, hōo khuì tshut--khì.',
 j:'Tâi-gí te̍k-iú ê im! Âu-lâng ài tín-tāng, ná-tshin Ing-gí ê z.',
 a:'Tshuì peh khah tuā, tsū-jiân tshut siann.',
 i:'Tshuì-kak uì nn̄g-pîng thuah--khui.',
 u:'Tshuì-tûn sok kah înn-înn.',
 e:'Tshuì puànn-khui, tshuì-kak sió-khuá thuah--khui.',
-o:'Tshuì-tûn sió-khuá înn, siann tī ㄜ kah ㄛ tiong-kan. {o} kah {oo} sī nn̄g ê bô kâng ê im!',
-oo:'Tshuì peh pí {o} khah tuā, tshuì-tûn înn-înn, ná-tshin ㄛ.',
+o:'Tshuì-tûn sió-khuá înn, tsi̍h khah āu. {o} kah {oo} sī nn̄g ê bô kâng ê im!',
+oo:'Tshuì peh pí {o} khah tuā, tshuì-tûn înn-înn.',
 ai:'Uì {a} tshu kàu {i}.',au:'Uì {a} tshu kàu {u}.',ia:'Uì {i} tshu kàu {a}.',
 iu:'Uì {i} tshu kàu {u}, bué-im tshuì-tûn ài înn.',
 io:'Uì {i} tshu kàu {o}. Huâ-gí bô tsit khuán tsoo-ha̍p!',
@@ -834,7 +886,7 @@ function drawBoard(key,cx,by,a){
   ctx.fillStyle='#f5b630';rr(ctx,x+8,y+8,78,h-16,9);ctx.fill();
   const lb=lab(key);txt(lb,x+47,y+52,`700 ${lb.length>2?28:lb.length>1?34:42}px ${FR}`,'#3a1d00','center','middle');
   txt(typeName(L.type),x+47,y+92,`700 13px ${FD}`,'#3a1d00','center','middle');
-  const zy=L.zy==='華語無'?X('華語無','Huâ-gí bô'):L.type==='聲調'?L.zy:zyOf(key);txt(zy,x+47,y+111,`700 12px ${FB}`,'#5a3200','center','middle');
+  const zy=L.zy==='華語無'?X('濁音','Tâi-gí te̍k-iú'):L.type==='聲調'?L.zy:'';txt(zy,x+47,y+111,`700 12px ${FB}`,'#5a3200','center','middle');
   L.words.forEach((wd,i)=>{const yy=y+24+i*32;
     txt(wd.e,x+100,yy,'22px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif','#000','left','middle');
     let rx=x+132;if(!lo){txt(wd.h,rx,yy+1,`900 22px ${FB}`,'#2a1636','left','middle');rx+=30}
@@ -1245,7 +1297,7 @@ function bump(s){
       burst(s.x+20,s.y,'#9a8fb0',12,180);
       float(s.x+20,s.y-20,X('毋著 m̄-tio̍h','M̄-tio̍h'),'#ff8a7a',24,FD);
       const L=LETTERS[q.key];
-      toast(L.type==='聲調'?X(`提示：這个字是${L.tip.split('：')[1].split('，')[0]}。`,'Koh siūnn khuànn-māi!'):isLo()?R(L.zy==='華語無'?'Thê-sī: Tsit ê im Huâ-gí bô, âu-lâng ài tín-tāng.':'Koh siūnn khuànn-māi!'):L.zy==='華語無'?`提示：這个音華語無，是台語特有的濁音。`:`提示：這个音有點像「${L.zy}」。`,4);
+      toast(hintFor(q.key),4);
       const mx=Math.min(p.x+190,q.barrier.x-60);
       g.enemies.push(mkMosq(mx,GY-130,50));burst(mx+14,GY-130,'#cfd6e6',10,120);
     }
@@ -1610,9 +1662,8 @@ function spawnBalloons(g,q,boss){
 }
 function hintFor(key){
   const L=LETTERS[key];
-  if(L.type==='聲調')return X(`提示：這个字是${L.tip.split('：')[1].split('，')[0]}。`,'Koh siūnn khuànn-māi!');
-  if(isLo())return R(L.zy==='華語無'?'Thê-sī: Tsit ê im Huâ-gí bô, âu-lâng ài tín-tāng.':'Koh siūnn khuànn-māi!');
-  return L.zy==='華語無'?'提示：這个音華語無，是台語特有的濁音。':`提示：這个音有點像「${L.zy}」。`;
+  if(L.type==='聲調')return X(`提示：這个字是${L.tip.split('：')[1].split('，')[0]}。`,R('Thê-sī: '+LO_TIP[key].split(': ')[1].split(/[.,]/)[0]+'.'));
+  return X('提示：'+tipR(L.tip).split('。')[0]+'。',R('Thê-sī: '+tipR(LO_TIP[key]).split(/[.!] /)[0].replace(/[.!]$/,'')+'.'));
 }
 function newJetBossQ(g){const key=ALL[Math.floor(Math.random()*ALL.length)];g.bossQ={key,word:pickWord(key,true),opts:pickOpts(key,Math.random),boss:true}}
 function spawnJetBoss(g){
@@ -1852,7 +1903,7 @@ function startLevel(i){
 function cardHTML(key){
   const L=LETTERS[key];
   return `<div class="card">
-    <div class="ctile"><span class="kind">${typeName(L.type)}</span><b class="big">${esc(lab(key))}</b><span class="zy">${L.zy==='華語無'?X('華語無這个音','Huâ-gí bô'):L.type==='聲調'?X('調值 ','Tiāu-tī ')+L.zy:X('有點像 ','Tsù-im ')+zyOf(key)}</span></div>
+    <div class="ctile"><span class="kind">${typeName(L.type)}</span><b class="big">${esc(lab(key))}</b>${L.zy==='華語無'?`<span class="zy">${X('台語特有濁音','Tâi-gí te̍k-iú')}</span>`:L.type==='聲調'?`<span class="zy">${X('調值 ','Tiāu-tī ')+L.zy}</span>`:''}</div>
     <div class="stack" style="min-width:0">
       <p class="tip">${esc(tipOf(key))}</p>
       <ul class="words">${L.words.map(w=>`${isLo()?`<li class="lo"><span class="emo">${w.e}</span><span class="tl">${marked(R(w.t))}</span></li>`:`<li><span class="emo">${w.e}</span><span class="han">${w.h}</span><span class="tl">${marked(R(w.t))}</span><span class="mean">${esc(w.m)}</span></li>`}`).join('')}</ul>
@@ -1880,7 +1931,7 @@ function scriptSwitch(){
 function bindScript(redraw){sheet.querySelectorAll('[data-script]').forEach(b=>b.onclick=()=>{if(SAVE.script===b.dataset.script)return;SAVE.script=b.dataset.script;persist();applyScript();redraw()})}
 function bindRom(redraw){sheet.querySelectorAll('[data-rom]').forEach(b=>b.onclick=()=>{if(SAVE.rom===b.dataset.rom)return;SAVE.rom=b.dataset.rom;persist();applyScript();redraw()})}
 function showBook(back){
-  const tile=k=>`<button class="tile ${SAVE.book[k]?'got':''}" data-k="${k}"><b>${esc(lab(k))}</b><span>${SAVE.book[k]?'✓':LETTERS[k].zy==='華語無'?X('濁音','b g j'):zyOf(k)}</span></button>`;
+  const tile=k=>`<button class="tile ${SAVE.book[k]?'got':''}" data-k="${k}"><b>${esc(lab(k))}</b><span>${SAVE.book[k]?'✓':typeName(LETTERS[k].type)}</span></button>`;
   const n=Object.keys(SAVE.book).filter(k=>LETTERS[k]).length;
   const diff=[['ts','ch'],['tsh','chh'],['oo','o͘'],['ua','oa'],['ue','oe'],['nn','ⁿ'],['ing','eng'],['ik','ek']];
   showOv(`<div class="stack">
@@ -1893,7 +1944,7 @@ function showBook(back){
     <h3 style="font-size:20px">${X('聲調','Siann-tiāu')} ${TONES.length} ${X('个','ê')}</h3><div class="bookgrid">${TONES.map(tile).join('')}</div>
     <h3 style="font-size:20px">${X('台羅和白話字無仝的所在','Tâi-lô kah Pe̍h-ōe-jī bô kâng ê sóo-tsāi')}</h3>
     <div class="diff">${diff.map(([t,p])=>`<div><span class="roman">${t}</span><i>→</i><span class="roman">${p}</span></div>`).join('')}</div>
-    <p class="note">${X(`台羅是教育部 2006 年公告的「臺灣台語羅馬字拼音方案」；白話字（教會羅馬字）有超過百年的歷史。兩種寫法的聲調符號仝款，差別主要佇頂面這幾項。注音只是近似，b、g、j 是台語特有的濁音，華語無。各地腔口有差，例如「雞」有人講 kue、「火」有人講 hé。`,'Tâi-lô sī Kàu-io̍k-pōo 2006 nî kong-kò ê phing-im hong-àn; Pe̍h-ōe-jī í-king ū pah gōa nî ê le̍k-sú. Nn̄g-hāng ê siann-tiāu hû-hō sio-kâng. B, g, j sī Huâ-gí bô ê im. Kok-tē khiunn-kháu bô kâng, pí-lūn ke ū lâng kóng kue.')}</p>
+    <p class="note">${X(`台羅是教育部 2006 年公告的「臺灣台語羅馬字拼音方案」；白話字（教會羅馬字）有超過百年的歷史。兩種寫法的聲調符號仝款，差別主要佇頂面這幾項。b、g、j 是台語特有的濁音，華語無。各地腔口有差，例如「雞」有人講 kue、「火」有人講 hé。`,'Tâi-lô sī Kàu-io̍k-pōo 2006 nî kong-kò ê phing-im hong-àn; Pe̍h-ōe-jī í-king ū pah gōa nî ê le̍k-sú. Nn̄g-hāng ê siann-tiāu hû-hō sio-kâng. B, g, j sī Huâ-gí bô ê im. Kok-tē khiunn-kháu bô kâng, pí-lūn ke ū lâng kóng kue.')}</p>
   </div>`);
   sheet.querySelectorAll('.tile').forEach(b=>b.onclick=()=>showCard(b.dataset.k,false,()=>showBook(back)));
   $('#back').onclick=back;bindRom(()=>showBook(back));bindScript(()=>showBook(back));
